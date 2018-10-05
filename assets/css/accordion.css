@@ -1,0 +1,79 @@
+/* Base Styles */
+#cssmenu,
+#cssmenu ul.parent,
+#cssmenu ul.child,
+#cssmenu li,
+#cssmenu a  {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  text-decoration: none;
+  /* font-family: 'Armata', sans-serif; */
+  font-size: 12px;
+  position: relative;
+}
+
+
+#cssmenu > ul.parent > li {
+ }
+
+
+li>a>span{color:#999;}
+
+#cssmenu > ul.parent > li:hover {
+ 
+}
+#cssmenu > ul.parent > li > a {
+  display: block;
+  color: #ffffff;
+  border-top: none;
+}
+
+#cssmenu > ul.parent > li > a > span {
+  display: block;
+  padding: 5px 8px;
+}
+
+#cssmenu > ul.parent > li > a:hover {
+  color: #2494F2;  
+  text-decoration: none;
+  border-left: 2px solid #2494F2;
+}
+#cssmenu > ul.parent li.active span {
+  color: #2494F2;  
+}
+
+#cssmenu ul.parent ul.child {
+  display: none;
+}
+
+#cssmenu ul.parent ul.child li {
+  color: blue;
+ 
+}
+
+
+#cssmenu ul.parent ul.child li.sub {
+  color: blue;
+  background: #474747;
+ 
+}
+
+#cssmenu ul.parent ul.child a {
+  padding: 5px 30px;
+  display: block;
+  font-size: 12px;
+  color: #999;
+}
+
+#cssmenu ul.parent ul.child a:before {
+  position: absolute;
+  left: 20px;
+  color: #3F3F3F;
+}
+
+#cssmenu ul.parent  ul.child  a:hover {
+  color: #fff;
+  background: #ccc;
+}

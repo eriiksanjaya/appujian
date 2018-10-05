@@ -1,0 +1,53 @@
+.pilihan-ep,.pertanyaan-ep
+{
+	font-size: 20px;
+	font-weight: 400;
+}
+
+span.label, li.nav-info-ep
+{
+	font-size: 14px;
+	font-weight: 300;
+}
+
+.login-box-msg{
+    font-size: 20px;
+    text-align: center;
+    font-weight: 350;
+    color: #999;
+  }
+  img{
+    margin-bottom: 10px;
+  }
+  .login-logo,
+  .register-logo
+  {
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 400;
+  }
+  .login-logo a,
+  .register-logo a {
+    color: #fff;
+  }
+  .label-ep{
+    font-size: 14px;
+    font-weight: 300;
+    font-color: #333;
+  }
+  .btn-ep
+  {
+    margin-top: 20px;
+    border: 0;
+    background-color: #39a1ea;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  a.dashboard
+  {
+    color: #39a1ea;
+  }

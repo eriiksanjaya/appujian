@@ -1,0 +1,11 @@
+{
+    "name": "erik/appujian",
+    "description": "source code aplikasi ujian",
+    "authors": [
+        {
+            "name": "Erik Sanjaya",
+            "email": "eriiksanjaya@gmail.com"
+        }
+    ],
+    "require": {}
+}
