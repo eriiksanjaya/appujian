@@ -13,7 +13,7 @@ $get_data = mysqli_query($conn, "SELECT * FROM ujian_kerjakan WHERE kerjakan_use
 			AND kerjakan_status = 'mulai' AND kerjakan_info = 'mengerjakan'
 			AND kerjakan_soalaktifid = '$_GET[sai]' AND kerjakan_materisoalid = '$_GET[msi]'");
 
-	if ($get_data->num_rows >0) {
+	if ($get_data->num_rows > 0) {
 		$row=mysqli_fetch_assoc($get_data);
 		$kerjakan = json_decode($row['kerjakan_data']);
 
@@ -33,9 +33,9 @@ $get_data = mysqli_query($conn, "SELECT * FROM ujian_kerjakan WHERE kerjakan_use
 	</div>
 </div>
 <?php } else {
-	echo "<div class='callout callout-warning'>
+	echo "<div class='callout callout-danger'>
         <h4>Perhatian!</h4>
-        <p>Anda telah mengerjakan soal ini ! Klik di <span class='badge btn-twitter'> <a href='pages.php?q=pilih-soal'>sini</a> </span> untuk kembali.</p>
+        <h3>Terjadi kesalahan sistem, silakan hubungi Erik. <br> Telepon : 089672057180 <br> Whatsapp : <a href='https://wa.me/6289672057180' target=_blank>https://wa.me/6289672057180</a></h3>
         </div>";
 } ?>
 <script type="text/javascript">
