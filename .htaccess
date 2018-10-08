@@ -1,0 +1,5 @@
+RewriteEngine on
+
+RewriteRule ^daftar$ daftar.php [L]
+
+Options All -Indexes

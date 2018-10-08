@@ -20,48 +20,48 @@
     $update = edit('ujian_kerjakan',$kolom,$where, $conn);
 
     $kerjakan = json_decode($row['kerjakan_data']);
-    $opt = [];
-    foreach ($kerjakan->jawaban as $key => $value) { 
-        $opt['pilihan'][$key] = $key.$value;
+
+    if (count($kerjakan->jawaban) > 0) {
+        $opt = [];
+        foreach ($kerjakan->jawaban as $key => $value) { 
+            $opt['pilihan'][$key] = $key.$value;
+        }
+
+        // ambil kunci jawaban
+        $kunci_soal = mysqli_query($conn, "SELECT * FROM vw_soal where aktif ='aktif' AND blokir ='n' AND materi_soal_id = '$_GET[msi]' AND siswa_id = '$_SESSION[siswa_id]'");
+        // $pilihan = $r['jawaban'];
+        $jml_soal = mysqli_num_rows($kunci_soal);
+
+        while($r = mysqli_fetch_assoc($kunci_soal)){
+            $data[] = $r;
+        }
+
+        $erik = [];
+        foreach ($data as $key => $value) {
+            $erik['kunci'][$value['soal_id']] = $value['soal_id'].$value['jawaban'];
+        }
+
+        // trace($opt);
+        $benar = count(array_intersect($opt['pilihan'], $erik['kunci']));
+        $salah = $jml_soal - $benar;
+        // trace($salah);
+
+        $persen_benar = round(($benar/$jml_soal)*100);
+        $persen_salah = round(($salah/$jml_soal)*100);
+
+
+        // cek nilai udah ada / belum
+        $cek_nilai = mysqli_query($conn, "SELECT * FROM tb_nilai_siswa WHERE siswa_id = '$_SESSION[siswa_id]'
+            AND materi_soal_id = '$_GET[msi]' AND YEAR(tgl) = '$y' AND MONTH(tgl) = '$m' AND DAY(tgl) = '$d'");
+        if (mysqli_num_rows($cek_nilai) <= 0) {
+        // save nilai
+            $kolom = "(siswa_id,materi_soal_id,benar,salah,nilai,tgl,jam)";
+            $nilai = "('$_SESSION[siswa_id]','$_GET[msi]','$benar','$salah','$persen_benar','$tgl','$jam')";
+            $save = simpan('tb_nilai_siswa',$kolom,$nilai, $conn);
+            $save = simpan('tb_nilai_guru',$kolom,$nilai, $conn);
+        }
     }
-
-    // ambil kunci jawaban
-    $kunci_soal = mysqli_query($conn, "SELECT * FROM vw_soal where aktif ='aktif' AND blokir ='n' AND materi_soal_id = '$_GET[msi]' AND siswa_id = '$_SESSION[siswa_id]'");
-    // $pilihan = $r['jawaban'];
-    $jml_soal = mysqli_num_rows($kunci_soal);
-
-    while($r = mysqli_fetch_assoc($kunci_soal)){
-        $data[] = $r;
-    }
-
-    $erik = [];
-    foreach ($data as $key => $value) {
-        $erik['kunci'][$value['soal_id']] = $value['soal_id'].$value['jawaban'];
-    }
-
-    // trace($opt);
-    $benar = count(array_intersect($opt['pilihan'], $erik['kunci']));
-    $salah = $jml_soal - $benar;
-    // trace($salah);
-
-    $persen_benar = round(($benar/$jml_soal)*100);
-    $persen_salah = round(($salah/$jml_soal)*100);
-
-
-    // cek nilai udah ada / belum
-    $cek_nilai = mysqli_query($conn, "SELECT * FROM tb_nilai_siswa WHERE siswa_id = '$_SESSION[siswa_id]'
-        AND materi_soal_id = '$_GET[msi]' AND YEAR(tgl) = '$y' AND MONTH(tgl) = '$m' AND DAY(tgl) = '$d'");
-    if (mysqli_num_rows($cek_nilai) <= 0) {
-    // save nilai
-        $kolom = "(siswa_id,materi_soal_id,benar,salah,nilai,tgl,jam)";
-        $nilai = "('$_SESSION[siswa_id]','$_GET[msi]','$benar','$salah','$persen_benar','$tgl','$jam')";
-        $save = simpan('tb_nilai_siswa',$kolom,$nilai, $conn);
-        $save = simpan('tb_nilai_guru',$kolom,$nilai, $conn);
-    }
-
 ?>
-
-
                 
         <div class='col-md-12'>
             <div class='box box-primary'>

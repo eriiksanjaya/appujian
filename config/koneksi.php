@@ -283,7 +283,6 @@ if( !function_exists('timeout'))
 {
 	function timeout($detik = 1000)
 	{
-		session_start();
         $_SESSION['timeout'] = time()+$detik;
         $_SESSION['detik']   = $detik;
 

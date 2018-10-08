@@ -166,7 +166,7 @@ break;
 
 <div class='form-group'>
   <label>Nama Guru</label>
-    <input type='text' class='form-control' disabled>
+    <input type='text' value='$r[nama]' class='form-control' disabled>
 </div>
 
 <div class='form-group'>
