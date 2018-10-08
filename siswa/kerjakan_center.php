@@ -9,18 +9,22 @@
 
 		if(mysqli_num_rows($doing) > 0) {
 			echo"
+                <div class='col-md-7'>
 				<div class='alert alert-warning alert-dismissible'>
 					<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button>
 					<h4><i class='icon fa fa-warning'></i> Peringatan</h4>
 					<h4>Anda masih mengerjakan tugas lain, klik di <span class='badge btn-twitter'> <a href='$base_url/siswa/pages.php?q=pilih-soal'>sini</a> </span> untuk kembali !</h4?
-				</div>";
+				</div></div>";
 			die();
 		} else {
 			// cek di ujian_kerjakan ada data / tidak
-            $get_kerjakan = mysqli_query($conn, "SELECT * FROM ujian_kerjakan WHERE kerjakan_userid = '$_SESSION[siswa_id]' 
+            $_sql = "SELECT * FROM ujian_kerjakan WHERE kerjakan_userid = '$_SESSION[siswa_id]' 
             AND YEAR(kerjakan_createdate) = '$y' AND MONTH(kerjakan_createdate) = '$m' AND DAY(kerjakan_createdate) = '$d'
-            AND kerjakan_soalaktifid = '$_GET[sai]' AND kerjakan_materisoalid = '$_GET[msi]'");
+            AND kerjakan_soalaktifid = '$_GET[sai]' AND kerjakan_materisoalid = '$_GET[msi]'";
+            $get_kerjakan = mysqli_query($conn, $_sql);
             $cek_kerjakan = mysqli_num_rows($get_kerjakan);
+
+            $_getkerjakan = mysqli_fetch_assoc($get_kerjakan);
 
                 $mulai = $c['tgl'] .' '.$c['jam'];
                 $selesai = date('Y-m-d H:i:s', strtotime("+ $c[menit] minutes", strtotime($mulai)));
@@ -33,21 +37,23 @@
                 if($jam_selesai<$now)
                 {
                     echo"
+                    <div class='col-md-7'>
                     <div class='alert alert-warning alert-dismissible'>
                     <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button>
                     <h4><i class='icon fa fa-warning'></i> Peringatan</h4>
                     <h4>Tanggal dan jam selesai TUGAS telah lewat, klik di <span class='badge btn-twitter'> <a href='$base_url/siswa/pages.php?q=pilih-soal'>sini</a> </span> untuk kembali !</h4?
-                    </div>";
+                    </div></div>";
                     die();
                 }
                 elseif (strtotime($mulai) > strtotime(date("Y-m-d H:i:s")))
                 {
                     echo"
+                    <div class='col-md-7'>
                     <div class='alert alert-warning alert-dismissible'>
                     <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button>
                     <h4><i class='icon fa fa-warning'></i> Peringatan</h4>
                     <h4>Belum Saatnya Anda mengerjakan !, klik di <span class='badge btn-twitter'> <a href='$base_url/siswa/pages.php?q=pilih-soal'>sini</a> </span> untuk kembali !</h4?
-                    </div>";
+                    </div></div>";
                     die();
                 }
 
@@ -70,7 +76,18 @@
                 $nilai = "('$_SESSION[siswa_id]','$array','mulai','$tgl','$_GET[sai]','$_GET[msi]','$mulai','$selesai')";
 
                 $save = simpan('ujian_kerjakan',$kolom,$nilai, $conn);
-           	}
+           	} else {
+                if ($_getkerjakan['kerjakan_status'] == 'selesai') {
+                    echo"
+                    <div class='col-md-7'>
+                    <div class='alert alert-warning alert-dismissible'>
+                    <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button>
+                    <h4><i class='icon fa fa-warning'></i> Peringatan</h4>
+                    <h4>Anda sudah mengerjakan tugas ini!, klik di <span class='badge btn-twitter'> <a href='$base_url/siswa/pages.php?q=pilih-soal'>sini</a> </span> untuk kembali !</h4?
+                    </div></div>";
+                    die();
+                }
+            }
 		}
     }
 ?>
