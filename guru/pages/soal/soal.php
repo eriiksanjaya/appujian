@@ -257,7 +257,7 @@ FROM
 tb_materi_soal
 INNER JOIN tb_soal ON tb_soal.materi_soal_id = tb_materi_soal.materi_soal_id
 WHERE
-tb_materi_soal.materi_soal_id = '$_GET[idx]' ORDER BY tb_soal.soal_id DESC") or die(mysql_error());
+tb_materi_soal.materi_soal_id = '$_GET[idx]' ORDER BY tb_soal.soal_id DESC");
 
 $mtri = mysqli_query($conn, "SELECT
 tb_materi_soal.materi_soal_id,
@@ -271,7 +271,7 @@ FROM
 tb_materi_soal
 INNER JOIN tb_pilih_mapel ON tb_materi_soal.pilih_mapel_id = tb_pilih_mapel.pilih_mapel_id
 INNER JOIN tb_mapel ON tb_pilih_mapel.mapel_id = tb_mapel.mapel_id
-WHERE tb_materi_soal.guru_id= '$_SESSION[guru_id]' AND tb_materi_soal.materi_soal_id = '$_GET[idx]'") or die(mysql_error());
+WHERE tb_materi_soal.guru_id= '$_SESSION[guru_id]' AND tb_materi_soal.materi_soal_id = '$_GET[idx]'");
 $m=mysqli_fetch_assoc($mtri);
 ?>
 <!-- Main content -->

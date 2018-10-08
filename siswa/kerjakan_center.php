@@ -63,6 +63,7 @@
                		$field_value['soal'][$key] = str_replace(array("'","<p>","</p>","\n","\r",'"',"alt= "), "", $_value);
                	}
 
+
                 $array = json_encode($field_value, JSON_UNESCAPED_UNICODE);
 
                 $kolom = "(kerjakan_userid,kerjakan_data,kerjakan_status,kerjakan_createdate,kerjakan_soalaktifid,kerjakan_materisoalid,kerjakan_mulai,kerjakan_selesai)";

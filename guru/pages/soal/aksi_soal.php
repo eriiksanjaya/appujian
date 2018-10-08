@@ -140,13 +140,13 @@ if ($module=='buat-soal' AND $act=='hapus'){
                         $data[$i]['e'] = preg_replace('/\s+/', ' ', $data[$i]['e']);
                         $data[$i]['jawaban'] = preg_replace('/\s+/', ' ', $data[$i]['jawaban']);
 
-                        $_data[$i]['soal'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['soal']);
-                        $_data[$i]['a'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['a']);
-                        $_data[$i]['b'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['b']);
-                        $_data[$i]['c'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['c']);
-                        $_data[$i]['d'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['d']);
-                        $_data[$i]['e'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['e']);
-                        $_data[$i]['jawaban'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['jawaban']);
+                        $_data[$i]['soal'] = str_replace(array("'", "<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['soal']);
+                        $_data[$i]['a'] = str_replace(array("'","<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['a']);
+                        $_data[$i]['b'] = str_replace(array("'","<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['b']);
+                        $_data[$i]['c'] = str_replace(array("'","<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['c']);
+                        $_data[$i]['d'] = str_replace(array("'","<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['d']);
+                        $_data[$i]['e'] = str_replace(array("'","<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['e']);
+                        $_data[$i]['jawaban'] = str_replace(array("'","<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['jawaban']);
 
                         $save[$i] = mysqli_query($conn, "INSERT INTO tb_soal(materi_soal_id, soal, 
                                         a, b, c, d, e, jawaban,

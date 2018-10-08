@@ -153,7 +153,7 @@ if ($module=='siswa' AND $act=='import'){
                                VALUES('{$data[$i]['kelas_sub_id']}','{$data[$i]['nis']}',
                                     '{$data[$i]['nama']}',
                                     '{$data[$i]['kelamin']}','{$data[$i]['pass']}',
-                                    '$tgl','$jam')") or die(mysqli_error());
+                                    '$tgl','$jam')");
                     }
 
                     if ($save) {

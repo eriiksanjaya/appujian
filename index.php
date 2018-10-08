@@ -10,7 +10,7 @@ if(@$_SESSION['level'] == "siswa"){
 }elseif(@$_SESSION['level'] == "admin"){
   header("location:$base_url/admin");
 }else{
-    $data = mysqli_query($conn, "SELECT * FROM vw_idset where set_id = '1'") or die(mysql_error());
+    $data = mysqli_query($conn, "SELECT * FROM vw_idset where set_id = '1'");
     $row = mysqli_fetch_assoc($data);
 ?>
 

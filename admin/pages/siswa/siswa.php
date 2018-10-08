@@ -41,7 +41,7 @@ tb_kelas_sub.blokir='n'
 GROUP BY
 tb_kelas_sub.nama_kelas
 ORDER BY
-tb_kelas_sub.nama_kelas ASC") or die(mysqli_error());
+tb_kelas_sub.nama_kelas ASC");
 echo "<div class='box'>
         <div class='box-body'>";
 

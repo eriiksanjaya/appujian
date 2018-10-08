@@ -42,7 +42,7 @@ tb_pilih_kelas.guru_id = '$_SESSION[guru_id]'
 GROUP BY
 tb_kelas_sub.kelas_sub_id
 ORDER BY
-tb_kelas_sub.nama_kelas ASC") or die(mysqli_error());
+tb_kelas_sub.nama_kelas ASC");
 
 while($r=mysqli_fetch_assoc($menu)){
 	echo"

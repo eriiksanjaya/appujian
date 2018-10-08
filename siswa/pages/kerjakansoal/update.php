@@ -14,7 +14,7 @@ $field_value 	= json_decode($row['kerjakan_data'], 1);
 
 $field_value['jawaban'][$_POST['soal_id']] = $_POST['soal_pilihan_id'];
 
-$array = json_encode($field_value);
+$array = json_encode($field_value, JSON_UNESCAPED_UNICODE);
 
 $kolom = "kerjakan_data = '$array', kerjakan_lastupdate = '$tgl'";
 $where = "kerjakan_id = '$row[kerjakan_id]'";

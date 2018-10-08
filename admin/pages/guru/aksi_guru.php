@@ -27,7 +27,7 @@ else{
     	                       VALUES('$_POST[nip]',
                                     '$pass',
                                     '$_POST[nama_guru]',
-                                    '$_POST[kelamin]','$tgl','$jam')") or die(mysqli_error());
+                                    '$_POST[kelamin]','$tgl','$jam')");
       header('location:../../pages.php?q='.$module);
      
     }
@@ -153,7 +153,7 @@ elseif ($module=='guru' AND $act=='hapus'){
                                VALUES('{$data[$i]['nip']}',
                                     '{$data[$i]['nama']}',
                                     '{$data[$i]['kelamin']}','{$data[$i]['pass']}',
-                                    '$tgl','$jam')") or die(mysqli_error());
+                                    '$tgl','$jam')");
                     }
 
                     if ($save) {

@@ -25,7 +25,7 @@ if(mysql_num_rows($ceknis) >=1){
                                  nama,kelamin,tgl,jam)
 	                       VALUES('$_POST[kelas_sub_id]','{$no}',
                                 '$pass',
-                                '$_POST[nama]','$_POST[kelamin]','$tgl','$jam')") or die(mysql_error());
+                                '$_POST[nama]','$_POST[kelamin]','$tgl','$jam')");
 
 $login=mysqli_query($conn, "SELECT * FROM vw_siswa WHERE id='$no' AND pass='$pass'");
 $ketemu=mysqli_num_rows($login);
@@ -33,10 +33,12 @@ $r=mysqli_fetch_assoc($login);
 
 if ($ketemu > 0){
   session_start();
-  $_SESSION['kelas_sub_id']           = $r['kelas_sub_id'];
-  $_SESSION['siswa_id']     = $r['siswa_id'];
-  $_SESSION['id']          = $no;
-  $_SESSION['nama_siswa']   = $r['nama'];
+  $_SESSION['siswa_id']     = @$r['user_id'];
+  $_SESSION['id']           = @$r['id'];
+  $_SESSION['kelas_sub_id'] = @$r['kelas_sub_id'];
+  $_SESSION['nama_siswa']   = @$r['nama'];
+  $_SESSION['panggilan']    = @$r['panggilan'];
+
   header("location:$base_url/siswa");
 }else{
   header("location:$base_url");
