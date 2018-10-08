@@ -27,7 +27,7 @@ $j = $_POST['j'];
 if ($module=='buat-soal' AND $act=='input'){
 
   mysqli_query($conn, "INSERT INTO tb_soal(materi_soal_id,soal,a,b,c,d,e,jawaban,tgl,jam) 
-	                       VALUES('$id','$soal','$a','$b','$c','$d','$e','$j','$tgl','$jam')")or die(mysql_error());
+	                       VALUES('$id','$soal','$a','$b','$c','$d','$e','$j','$tgl','$jam')");
   header('location:../../pages.php?q='.$module.'&act=lihatsoal&idx='.$id);
 }
 
@@ -40,7 +40,7 @@ elseif ($module=='buat-soal' AND $act=='update'){
                                     d   = '$d',
                                     e   = '$e',
                                     jawaban   = '$j'
-                           WHERE  soal_id     = '$_POST[id]'") or die(mysql_error());
+                           WHERE  soal_id     = '$_POST[id]'");
  
   header('location:../../pages.php?q='.$module.'&act=lihatsoal&idx='.$msi);
 }
@@ -75,13 +75,10 @@ if ($module=='buat-soal' AND $act=='hapus'){
         {
             $import   = $_FILES['import'];
 
-            // trace($import,false);
-              // validasi
-
             $ekstensi = ['xlsx','xls','ods'];
             if ( in_array(get_file_extensions($import['name']), $ekstensi) )
             {
-                $tmp    = $import['tmp_name'];  
+                $tmp    = $import['tmp_name'];
 
                 try {
 
@@ -131,25 +128,32 @@ if ($module=='buat-soal' AND $act=='hapus'){
 
                         $i++;
                     }
-                    // trace($data,false);
 
                     $no = 0;
                     for ($i=0; $i < count($data); $i++) { 
                         $data[$i]['materi_soal_id'] = $msi;
-                        $data[$i]['soal'] = $data[$i]['soal'];
-                        $data[$i]['a'] = $data[$i]['a'];
-                        $data[$i]['b'] = $data[$i]['b'];
-                        $data[$i]['c'] = $data[$i]['c'];
-                        $data[$i]['d'] = $data[$i]['d'];
-                        $data[$i]['e'] = $data[$i]['e'];
-                        $data[$i]['jawaban'] = $data[$i]['jawaban'];
+                        $data[$i]['soal'] = preg_replace('/\s+/', ' ', $data[$i]['soal']);
+                        $data[$i]['a'] = preg_replace('/\s+/', ' ', $data[$i]['a']);
+                        $data[$i]['b'] = preg_replace('/\s+/', ' ', $data[$i]['b']);
+                        $data[$i]['c'] = preg_replace('/\s+/', ' ', $data[$i]['c']);
+                        $data[$i]['d'] = preg_replace('/\s+/', ' ', $data[$i]['d']);
+                        $data[$i]['e'] = preg_replace('/\s+/', ' ', $data[$i]['e']);
+                        $data[$i]['jawaban'] = preg_replace('/\s+/', ' ', $data[$i]['jawaban']);
+
+                        $_data[$i]['soal'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['soal']);
+                        $_data[$i]['a'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['a']);
+                        $_data[$i]['b'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['b']);
+                        $_data[$i]['c'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['c']);
+                        $_data[$i]['d'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['d']);
+                        $_data[$i]['e'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['e']);
+                        $_data[$i]['jawaban'] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $data[$i]['jawaban']);
 
                         $save[$i] = mysqli_query($conn, "INSERT INTO tb_soal(materi_soal_id, soal, 
                                         a, b, c, d, e, jawaban,
                                         tgl,jam) 
-                               VALUES('{$data[$i]['materi_soal_id']}','{$data[$i]['soal']}',
-                                    '{$data[$i]['a']}','{$data[$i]['b']}','{$data[$i]['c']}','{$data[$i]['d']}','{$data[$i]['e']}','{$data[$i]['jawaban']}',
-                                    '$tgl','$jam')") or die(mysqli_error());
+                               VALUES('{$data[$i]['materi_soal_id']}','{$_data[$i]['soal']}',
+                                    '{$_data[$i]['a']}','{$_data[$i]['b']}','{$_data[$i]['c']}','{$_data[$i]['d']}','{$_data[$i]['e']}','{$_data[$i]['jawaban']}',
+                                    '$tgl','$jam')");
                     }
 
                     if ($save) {
@@ -157,7 +161,6 @@ if ($module=='buat-soal' AND $act=='hapus'){
                     }
 
                 } catch (Exception $e) {
-
                 }
             } else {
                 echo "ayo mau import file apa?";

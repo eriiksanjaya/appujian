@@ -49,7 +49,7 @@ if ( !function_exists('simpan') )
 	function simpan($tabel, $kolom, $nilai, $conn){
 		$hasil['status'] = false;
 		$hasil['message'] = 'gagal disimpan, $conn';
-		$data = mysqli_query($conn, "INSERT INTO $tabel $kolom values $nilai") OR die(mysqli_error());
+		$data = mysqli_query($conn, "INSERT INTO $tabel $kolom values $nilai");
 		if($data){
 			$hasil['status'] = true;
 			$hasil['message'] = 'berhasil disimpan';
@@ -63,7 +63,7 @@ if ( !function_exists('edit') )
 	function edit($tabel, $kolom, $where, $conn){
 		$hasil['status'] = false;
 		$hasil['message'] = 'gagal edit, $conn';
-		$data = mysqli_query($conn, "UPDATE $tabel SET $kolom WHERE $where") OR die(mysqli_error());
+		$data = mysqli_query($conn, "UPDATE $tabel SET $kolom WHERE $where");
 		if($data){
 			$hasil['status'] = true;
 			$hasil['message'] = 'berhasil edit';

@@ -89,7 +89,7 @@
     
     <script type="text/javascript">
         $('#page_soal').slimScroll({
-            height: '620px',
+            height: '420px',
             alwaysVisible: true
         });
 

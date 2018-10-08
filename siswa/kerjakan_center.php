@@ -55,12 +55,12 @@
                 $field_value['id']      = rand(9, 999999);
                 $field_value            = ['mulai' => $mulai, 'selesai' => $selesai];
 
-                $get_soal = mysqli_query($conn, "SELECT * FROM vw_soal WHERE aktif ='aktif' AND blokir ='n' AND soal_aktif_id = '$_GET[sai]' AND materi_soal_id = '$_GET[msi]' AND siswa_id = '$_SESSION[siswa_id]' ORDER BY RAND()") or die(mysqli_error());
+                $get_soal = mysqli_query($conn, "SELECT * FROM vw_soal WHERE aktif ='aktif' AND blokir ='n' AND soal_aktif_id = '$_GET[sai]' AND materi_soal_id = '$_GET[msi]' AND siswa_id = '$_SESSION[siswa_id]' ORDER BY RAND()");
 
 
                	foreach ($get_soal as $key => $value) {
                     $_value = preg_replace('/\s+/', ' ', $value);
-               		$field_value['soal'][$key] = str_replace(array("<p>","</p>","\n","\r",'"',"alt= "), "", $_value);
+               		$field_value['soal'][$key] = str_replace(array("'","<p>","</p>","\n","\r",'"',"alt= "), "", $_value);
                	}
 
                 $array = json_encode($field_value, JSON_UNESCAPED_UNICODE);

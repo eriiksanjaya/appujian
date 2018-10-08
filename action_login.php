@@ -27,7 +27,7 @@
              * @var detik int
              **/
 
-            $detik = 10; // silakan ubah bagian sini
+            $detik = 1000; // silakan ubah bagian sini
             timeout($detik);
 
             $_SESSION['siswa_id']     = @$r['user_id'];
