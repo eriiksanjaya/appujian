@@ -49,7 +49,7 @@ if ( !function_exists('simpan') )
 	function simpan($tabel, $kolom, $nilai, $conn){
 		$hasil['status'] = false;
 		$hasil['message'] = 'gagal disimpan, $conn';
-		$data = mysqli_query($conn, "INSERT INTO $tabel $kolom values $nilai");
+		$data = mysqli_query($conn, "INSERT INTO $tabel $kolom values $nilai") or trace($conn,false);
 		if($data){
 			$hasil['status'] = true;
 			$hasil['message'] = 'berhasil disimpan';
@@ -63,7 +63,7 @@ if ( !function_exists('edit') )
 	function edit($tabel, $kolom, $where, $conn){
 		$hasil['status'] = false;
 		$hasil['message'] = 'gagal edit, $conn';
-		$data = mysqli_query($conn, "UPDATE $tabel SET $kolom WHERE $where");
+		$data = mysqli_query($conn, "UPDATE $tabel SET $kolom WHERE $where") or trace($conn,false);
 		if($data){
 			$hasil['status'] = true;
 			$hasil['message'] = 'berhasil edit';
@@ -313,6 +313,111 @@ if( !function_exists('logout'))
 		session_destroy();
 		echo "<script>window.location.replace('$base_url/siswa/logout.php')</script>";
 	}
+}
+
+if (!function_exists('app_date_value')) 
+{
+    function app_date_value($date, $format = 'd-m-Y', $from = '')
+    {
+    	$result 	= null;
+    	if ($date != "") {
+			   $result = ($from == '')  ? nice_date($date, $format) : app_date_format($date, $format, $from);
+    	}
+
+    	return $result;
+
+    }
+}
+
+if (!function_exists('app_date_format')) 
+{
+    function app_date_format($date, $format = '', $from = '')
+    {
+        $newdate = $date;
+
+        if ( $from == "" ) 
+        {
+            $newdate   = date_format(date_create($date), $format);
+        }else {
+        	if ( app_valid_date($date, $from) ) {
+        		$myDateTime = DateTime::createFromFormat($from, $date);
+            	$newdate    = @$myDateTime->format('Y-m-d');
+        	}            
+        }        
+
+        return $newdate;
+    }
+}
+
+if ( !function_exists('app_valid_date') ) {
+	function app_valid_date($date, $format = 'Y-m-d')
+	{
+	    $d = DateTime::createFromFormat($format, $date);
+	    return $d && $d->format($format) == $date;
+	}
+}
+
+if ( ! function_exists('nice_date'))
+{
+  /**
+   * Turns many "reasonably-date-like" strings into something
+   * that is actually useful. This only works for dates after unix epoch.
+   *
+   * @param string  The terribly formatted date-like string
+   * @param string  Date format to return (same as php date function)
+   * @return  string
+   */
+  function nice_date($bad_date = '', $format = FALSE)
+  {
+    if (empty($bad_date))
+    {
+      return 'Unknown';
+    }
+    elseif (empty($format))
+    {
+      $format = 'U';
+    }
+
+    // Date like: YYYYMM
+    if (preg_match('/^\d{6}$/i', $bad_date))
+    {
+      if (in_array(substr($bad_date, 0, 2), array('19', '20')))
+      {
+        $year  = substr($bad_date, 0, 4);
+        $month = substr($bad_date, 4, 2);
+      }
+      else
+      {
+        $month  = substr($bad_date, 0, 2);
+        $year   = substr($bad_date, 2, 4);
+      }
+
+      return date($format, strtotime($year.'-'.$month.'-01'));
+    }
+
+    // Date Like: YYYYMMDD
+    if (preg_match('/^(\d{2})\d{2}(\d{4})$/i', $bad_date, $matches))
+    {
+      return date($format, strtotime($matches[1].'/01/'.$matches[2]));
+    }
+
+    // Date Like: MM-DD-YYYY __or__ M-D-YYYY (or anything in between)
+    if (preg_match('/^(\d{1,2})-(\d{1,2})-(\d{4})$/i', $bad_date, $matches))
+    {
+      return date($format, strtotime($matches[3].'-'.$matches[1].'-'.$matches[2]));
+    }
+
+    // Any other kind of string, when converted into UNIX time,
+    // produces "0 seconds after epoc..." is probably bad...
+    // return "Invalid Date".
+    if (date('U', strtotime($bad_date)) === '0')
+    {
+      return 'Invalid Date';
+    }
+
+    // It's probably a valid-ish date format already
+    return date($format, strtotime($bad_date));
+  }
 }
 
 ?>

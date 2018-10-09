@@ -52,6 +52,9 @@ elseif ($_GET['q']=='slide'){
 elseif ($_GET['q']=='identitas'){
     include "pages/identitas/identitas.php";
 }
+elseif ($_GET['q']=='endtask'){
+    include "../modules/endtask/endtask.php";
+}
 else{
   echo "<h3><b>Alamat yang Anda ketikan tidak terdaftar</b></h3>";
 }

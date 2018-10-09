@@ -47,8 +47,11 @@ if(empty($_SESSION['admin_id']) OR $_SESSION['level'] != 'admin'){
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/ep/style.css">
 
+<!-- jQuery 2.2.3 -->
+<script src="<?php echo $base_url; ?>/assets/lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
 
 </head>
+
 
 <?php include'header.php'; ?>
 <?php include'menu.php'; ?>
@@ -57,8 +60,6 @@ if(empty($_SESSION['admin_id']) OR $_SESSION['level'] != 'admin'){
   </div>
 <?php include'footer.php'; ?>
 
-<!-- jQuery 2.2.3 -->
-<script src="<?php echo $base_url; ?>/assets/lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
 
 <script src="<?php echo $base_url; ?>/assets/datatable/jquery.dataTables.min.js"></script>
 <script src="<?php echo $base_url; ?>/assets/datatable/dataTables.bootstrap.min.js"></script>
@@ -72,12 +73,9 @@ if(empty($_SESSION['admin_id']) OR $_SESSION['level'] != 'admin'){
 <script src="<?php echo $base_url; ?>/assets/lte/bootstrap/js/bootstrap.min.js"></script>
 <!-- Select2 -->
 <script src="<?php echo $base_url; ?>/assets/lte/plugins/select2/select2.full.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo $base_url; ?>/assets/lte/dist/js/app.min.js"></script>
 <!-- SlimScroll 1.3.0 -->
 <script src="<?php echo $base_url; ?>/assets/lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo $base_url; ?>/assets/lte/dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo $base_url; ?>/assets/lte/dist/js/app.min.js"></script>
 
