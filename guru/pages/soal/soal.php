@@ -1,16 +1,9 @@
 <section class="content-header">
   <h1>
     Tugas
-    <small>preview</small>
   </h1>
-  <!-- <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Tables</a></li>
-    <li class="active">Simple</li>
-  </ol> -->
 </section>
 
-<!-- Main content -->
 <section class="content">
   <div class="row">
 
@@ -21,7 +14,6 @@
   header("location:../../index.php");
 }
 else{
-error_reporting(0);
 $aksi="pages/soal/aksi_soal.php";
 switch($_GET['act']){
   default:
@@ -29,10 +21,6 @@ switch($_GET['act']){
 
     if ($_SESSION['guru_id']){
 		
-	$p      = new Paging;
-    $batas  = 20;
-    $posisi = $p->cariPosisi($batas);
-
     $jml_soal = mysqli_query($conn, "SELECT
 tb_materi_soal.materi_soal_id,
 tb_materi_soal.guru_id,
@@ -55,7 +43,7 @@ FROM
 tb_materi_soal
 INNER JOIN tb_pilih_mapel ON tb_materi_soal.pilih_mapel_id = tb_pilih_mapel.pilih_mapel_id
 INNER JOIN tb_mapel ON tb_pilih_mapel.mapel_id = tb_mapel.mapel_id
-WHERE tb_materi_soal.guru_id= '$_SESSION[guru_id]' ORDER BY tb_mapel.mata_pelajaran, tb_materi_soal.materi ASC LIMIT $posisi,$batas");
+WHERE tb_materi_soal.guru_id= '$_SESSION[guru_id]' ORDER BY tb_mapel.mata_pelajaran, tb_materi_soal.materi ASC");
 
 ?>
 <!-- Main content -->
@@ -72,24 +60,11 @@ WHERE tb_materi_soal.guru_id= '$_SESSION[guru_id]' ORDER BY tb_mapel.mata_pelaja
               <th style="width: 20px">Action</th>
             </tr>
             <?php
-            $no = $posisi+1;
-            while ($r=mysqli_fetch_assoc($tampil)){
-            $lebar=strlen($no);
-            switch($lebar){
-              case 1:
-              {
-                $g="0".$no;
-                break;     
-              }
-              case 2:
-              {
-                $g=$no;
-                break;     
-              }      
-            } ?>
+            $no = 1;
+            while ($r=mysqli_fetch_assoc($tampil)){ ?>
 
             <tr>
-              <td><?php echo $g; ?></td>
+              <td><?php echo $no++; ?></td>
               <td><span class=""><?php echo $r['mata_pelajaran']; ?></span></td>
               <td><span class=""><?php echo $r['materi']; ?></span></td>
               <td>
@@ -99,38 +74,11 @@ WHERE tb_materi_soal.guru_id= '$_SESSION[guru_id]' ORDER BY tb_mapel.mata_pelaja
              
               </td>
             </tr>
-            <?php $no++; } ?>
+            <?php } ?>
           </table>
         </div>
         <!-- /.box-body -->
-        <div class="box-footer clearfix">
-          <ul class="pagination pagination-sm no-margin pull-right">
-          <?php 
-          $data = mysqli_query($conn, "SELECT
-tb_materi_soal.materi_soal_id,
-tb_materi_soal.guru_id,
-tb_materi_soal.materi,
-tb_materi_soal.blokir,
-tb_materi_soal.pilih_mapel_id,
-tb_pilih_mapel.pilih,
-tb_mapel.mata_pelajaran
-FROM
-tb_materi_soal
-INNER JOIN tb_pilih_mapel ON tb_materi_soal.pilih_mapel_id = tb_pilih_mapel.pilih_mapel_id
-INNER JOIN tb_mapel ON tb_pilih_mapel.mapel_id = tb_mapel.mapel_id
-WHERE tb_materi_soal.guru_id= '$_SESSION[guru_id]' "); 
-          $jml=mysqli_num_rows($data);
-          if ($jml<=$batas){
-          }
-          else
-          {
-              $jmlhalaman  = $p->jumlahHalaman($jml, $batas);
-              $linkHalaman = $p->navHalaman($_GET['halaman'], $jmlhalaman);
-            
-          echo "$linkHalaman";
-          } ?>
-          </ul>
-          </div>
+
         </div>
         </div>
 <?php 
@@ -233,9 +181,6 @@ WHERE tb_materi_soal.guru_id= '$_SESSION[guru_id]' AND tb_materi_soal.materi_soa
   echo"<div class='col-md-12'>";
 
     if ($_SESSION['guru_id']){
-    $p      = new PagingLihatSoal;
-    $batas  = 25;
-    $posisi = $p->cariPosisi($batas);
 
      $tampil = mysqli_query($conn, "SELECT
 tb_materi_soal.materi_soal_id,
@@ -320,21 +265,9 @@ echo"
           <th>Aksi</th>
           </tr>
       </thead>"; 
-    $no=$posisi+1;
+    $no=1;
     while ($r=mysqli_fetch_assoc($tampil)){
-    $lebar=strlen($no);
-    switch($lebar){
-      case 1:
-      {
-        $g="0".$no;
-        break;     
-      }
-      case 2:
-      {
-        $g=$no;
-        break;     
-      }      
-    } 
+   
        echo "<tbody><tr>
           <td>$no</td>
              <td>$r[soal]</td>

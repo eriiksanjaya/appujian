@@ -29,12 +29,6 @@ switch($_GET['act']){
 
   default:
 
-    $p      = new Paging;
-    $batas  = 20;
-    $posisi = $p->cariPosisi($batas);
-
-
-
       $tampil = mysqli_query($conn, "SELECT
 tb_soal_aktif.soal_aktif_id,
 tb_soal_aktif.materi_soal_id,
@@ -84,26 +78,14 @@ ORDER BY tb_nilai_siswa.tgl DESC, tb_mapel.mata_pelajaran ASC, tb_materi_soal.ma
           <th>Jam</th>
           <th>Aksi</th>
           </tr></thead>";
-    $no = $posisi+1;
+    $no = 1;
     while ($r=mysqli_fetch_assoc($tampil)){
-$tgl = tgl_indo($r['tgl']);
+  
+  $tgl = app_date_value($r['tgl'], "d M Y");
 
-  $lebar=strlen($no);
-    switch($lebar){
-      case 1:
-      {
-        $g="0".$no;
-        break;
-      }
-      case 2:
-      {
-        $g=$no;
-        break;
-      }
-    }
        echo "<tbody>
           <tr>
-          <td>$g</td>
+          <td>$no</td>
              <td>$r[nama_kelas]</td>
              <td>$r[mata_pelajaran]</td>
              <td>$r[materi]</td>
@@ -122,11 +104,6 @@ $tgl = tgl_indo($r['tgl']);
     case "tampilnilai";
 
     if ($_SESSION['siswa_id']){
-  $p      = new PagingTampilNilai;
-    $batas  = 30;
-    $posisi = $p->cariPosisi($batas);
-
-
 
     $tampil = mysqli_query($conn, "SELECT
 tb_nilai_siswa.nilai_id,
@@ -178,7 +155,7 @@ INNER JOIN tb_mapel ON tb_pilih_mapel.mapel_id = tb_mapel.mapel_id
 INNER JOIN tb_guru ON tb_materi_soal.guru_id = tb_guru.guru_id
 WHERE tb_nilai_siswa.materi_soal_id = '$_GET[msi]' AND tb_kelas_sub.kelas_sub_id = '$_GET[ksi]' AND tb_nilai_siswa.siswa_id = '$_SESSION[siswa_id]' AND tb_nilai_siswa.tgl = '$_GET[tgl]'");
 $h=mysqli_fetch_assoc($he);
-$tgl = tgl_indo($h['tgl']);
+$tgl = app_date_value($h['tgl'], "d M Y");
 
 
 
@@ -210,24 +187,11 @@ $tgl = tgl_indo($h['tgl']);
           <th>Nilai</th>
           <th>Jam</th>
           </tr></thead>";
-    $no = $posisi+1;
+    $no = 1;
     while ($r=mysqli_fetch_assoc($tampil)){
-  $lebar=strlen($no);
-    switch($lebar){
-      case 1:
-      {
-        $g="0".$no;
-        break;
-      }
-      case 2:
-      {
-        $g=$no;
-        break;
-      }
-    }
        echo "<tbody>
           <tr>
-          <td>$g</td>
+          <td>$no</td>
              <td>$r[benar]</td>
              <td>$r[salah]</td>
              <td>$r[nilai]</td>

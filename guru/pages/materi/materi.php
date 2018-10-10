@@ -2,14 +2,8 @@
   <h1>
     Materi
   </h1>
-  <!-- <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Tables</a></li>
-    <li class="active">Simple</li>
-  </ol> -->
 </section>
 
-<!-- Main content -->
 <section class="content">
   <div class="row">
 
@@ -19,18 +13,12 @@
   header("location:../../index.php");
 }
 else{
-error_reporting(0);
 $aksi="pages/materi/aksi_materi.php";
 switch($_GET['act']){
   default:
   echo"<div class='col-md-8'>";
 
     if ($_SESSION['guru_id']){
-		
-	$p      = new Paging;
-    $batas  = 20;
-    $posisi = $p->cariPosisi($batas);
-	
       $tampil = mysqli_query($conn, "SELECT
 tb_materi_soal.materi_soal_id,
 tb_materi_soal.pilih_mapel_id,
@@ -47,12 +35,10 @@ WHERE tb_pilih_mapel.guru_id= '$_SESSION[guru_id]' ORDER BY tb_mapel.mata_pelaja
 
 
 ?>
-<!-- Main content -->
       <div class="box">
         <div class="box-header with-border">
           <input type=button class='btn btn-danger btn-flat btn-sm' value='Tambah' onclick="window.location.href='?q=materi-soal&act=tambahmateri'">
         </div>
-        <!-- /.box-header -->
         <div class="box-body">
           <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
@@ -66,24 +52,11 @@ WHERE tb_pilih_mapel.guru_id= '$_SESSION[guru_id]' ORDER BY tb_mapel.mata_pelaja
             </thead>
             <tbody>
             <?php
-            $no = $posisi+1;
-            while ($r=mysqli_fetch_assoc($tampil)){
-            $lebar=strlen($no);
-            switch($lebar){
-              case 1:
-              {
-                $g="0".$no;
-                break;     
-              }
-              case 2:
-              {
-                $g=$no;
-                break;     
-              }      
-            } ?>
+            $no = 1;
+            while ($r=mysqli_fetch_assoc($tampil)){ ?>
 
             <tr>
-              <td><?php echo $g; ?></td>
+              <td><?php echo $no; ?></td>
               <td><span class=""><?php echo $r['mata_pelajaran']; ?></span></td>
               <td><span class=""><?php echo $r['materi']; ?></span></td>
               <td><span class=""><?php echo $r['blokir']; ?></span></td>

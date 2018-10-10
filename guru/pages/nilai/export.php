@@ -5,8 +5,6 @@ if (empty($_SESSION['guru_id'])){
 }else{
 include'../../../config/koneksi.php';
 include'../../../config/datetime.php';
-include'../../../config/class_paging.php';
-include'../../../config/fungsi_indotgl.php';
 
 $he = mysqli_query($conn, "SELECT
 tb_siswa.nis,
@@ -34,7 +32,7 @@ INNER JOIN tb_guru ON tb_materi_soal.guru_id = tb_guru.guru_id
 WHERE tb_materi_soal.guru_id='$_SESSION[guru_id]'
 AND tb_nilai_guru.tgl = '$_GET[tgl]' AND tb_nilai_guru.materi_soal_id = '$_GET[msi]' AND tb_kelas_sub.kelas_sub_id = '$_GET[ksi]'");
 $h=mysqli_fetch_assoc($he);
-$tgl = tgl_indo($h['tgl']);
+$tgl = app_date_value($h['tgl'], "d M Y");
 
 $guru = str_replace(' ','',$h['nama']);
 $kls = str_replace(' ','',$h['nama_kelas']);

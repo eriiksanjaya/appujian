@@ -1,34 +1,21 @@
     <section class="content-header">
       <h1>
         Pengaturan
-        <small></small>
       </h1>
-      <!-- <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">General Elements</li>
-      </ol> -->
+     
     </section>
 
-    <!-- Main content -->
     <section class="content">
       <div class="row">
-        <!-- left column -->
-
 <?php
  if (empty($_SESSION['admin_id'])){
   echo "string";
 }
 else{
-error_reporting(0);
 $aksi="pages/formdaftar/aksi_formdaftar.php";
 switch($_GET['act']){
   default:
     if ($_SESSION['level']=='admin'){
-
-  $p      = new Paging;
-    $batas  = 10;
-    $posisi = $p->cariPosisi($batas);
 
       $tampil = mysqli_query($conn, "SELECT * FROM tb_set");
 
@@ -51,21 +38,8 @@ switch($_GET['act']){
 
        <tbody>";
 
-  $no = $posisi+1;
-    while ($r=mysqli_fetch_assoc($tampil)){
-  $lebar=strlen($no);
-    switch($lebar){
-      case 1:
-      {
-        $g="0".$no;
-        break;
-      }
-      case 2:
-      {
-        $g=$no;
-        break;
-      }
-    }
+  $no = 1;
+    while ($r=mysqli_fetch_assoc($tampil)){ 
      echo"<tr>
               <td>$r[set]</td>
              <td>$r[status]</td>

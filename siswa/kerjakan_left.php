@@ -36,7 +36,7 @@ INNER JOIN tb_kelas_sub ON tb_kelas_sub.kelas_sub_id = tb_soal_aktif.kelas_sub_i
 WHERE tb_soal_aktif.aktif ='aktif' AND tb_soal.blokir = 'n' AND tb_soal_aktif.materi_soal_id = $_GET[msi] AND tb_siswa.siswa_id = '$_SESSION[siswa_id]'");
 $r = mysqli_fetch_assoc($info);
 $jml_soal = $r['jml_soal'];
-$tgl_i = tgl_indo($r['tgl']);
+$tgl_i = app_date_value($r['tgl'], "d M Y");
 ?>
 
 <div class="col-md-3">

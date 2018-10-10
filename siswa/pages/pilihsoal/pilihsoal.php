@@ -23,11 +23,6 @@ switch(isset($_GET['act'])){
   default:
     if ($_SESSION['siswa_id']){
 
-	$p      = new Paging;
-    $batas  = 10;
-    $posisi = $p->cariPosisi($batas);
-    // trace($_SESSION);
-
     $tampil = mysqli_query($conn, "SELECT * FROM vw_tugas_aktif
       WHERE aktif = 'aktif' AND kelas_sub_id = '$_SESSION[kelas_sub_id]' ORDER BY tgl ASC");
 
@@ -59,10 +54,10 @@ switch(isset($_GET['act'])){
           <th>Jam</th>
           <th>Aksi</th>
         </tr></thead><tbody>";
-    $no=$posisi+1;
+    $no=1;
     
     while ($r=mysqli_fetch_assoc($tampil)){
-      $tgl = tgl_indo($r['tgl']);
+      $tgl = app_date_value($r['tgl'], "d M Y");
 
 		
        echo "<tr>

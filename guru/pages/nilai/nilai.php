@@ -1,16 +1,9 @@
 <section class="content-header">
   <h1>
     Nilai Siswa
-    <small>preview</small>
   </h1>
-  <!-- <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Tables</a></li>
-    <li class="active">Simple</li>
-  </ol> -->
 </section>
 
-<!-- Main content -->
 <section class="content">
   <div class="row">
 <?php
@@ -18,8 +11,7 @@
   header("location:../../index.php");
 }
 else{
-error_reporting(0);
-include'../../config/fungsi_indotgl.php';
+include'../../config/koneksi.php';
 
 switch($_GET['act']){
 
@@ -62,12 +54,6 @@ case "tampilmateri";
 
 
     if ($_SESSION['guru_id']){
-  $p      = new PagingTampilNilaiMateri;
-    $batas  = 20;
-    $posisi = $p->cariPosisi($batas);
-
-
-
       $tampil = mysqli_query($conn, "SELECT
 tb_soal_aktif.soal_aktif_id,
 tb_soal_aktif.materi_soal_id,
@@ -115,24 +101,11 @@ ORDER BY tb_nilai_guru.nilai_id DESC");
           <th>Jam</th>
           <th>Aksi</th>
           </tr></thead>";
-    $no = $posisi+1;
+    $no = 1;
     while ($r=mysqli_fetch_assoc($tampil)){
-  $lebar=strlen($no);
-    switch($lebar){
-      case 1:
-      {
-        $g="0".$no;
-        break;
-      }
-      case 2:
-      {
-        $g=$no;
-        break;
-      }
-    }
        echo "<tbody>
           <tr>
-          <td>$g</td>
+          <td>$no</td>
              <td>$r[nama_kelas]</td>
              <td>$r[mata_pelajaran]</td>
              <td>$r[materi]</td>
@@ -155,11 +128,6 @@ ORDER BY tb_nilai_guru.nilai_id DESC");
     case "tampilnilai";
 
     if ($_SESSION['guru_id']){
-  $p      = new PagingTampilNilaiTgl;
-    $batas  = 60;
-    $posisi = $p->cariPosisi($batas);
-
-
 
     $tampil = mysqli_query($conn, "SELECT
 tb_nilai_guru.nilai_id,
@@ -215,7 +183,7 @@ INNER JOIN tb_guru ON tb_materi_soal.guru_id = tb_guru.guru_id
 WHERE tb_materi_soal.guru_id='$_SESSION[guru_id]'
 AND tb_nilai_guru.tgl = '$_GET[tgl]' AND tb_nilai_guru.materi_soal_id = '$_GET[msi]' AND tb_kelas_sub.kelas_sub_id = '$_GET[ksi]'");
 $h=mysqli_fetch_assoc($he);
-$tgl = tgl_indo($h['tgl']);
+$tgl = app_date_value($h['tgl'], "d M Y");
 
 
 
@@ -246,24 +214,11 @@ $tgl = tgl_indo($h['tgl']);
           <th>Nilai</th>
           <th>Jam</th>
           </tr></thead>";
-    $no = $posisi+1;
+    $no = 1;
     while ($r=mysqli_fetch_assoc($tampil)){
-  $lebar=strlen($no);
-    switch($lebar){
-      case 1:
-      {
-        $g="0".$no;
-        break;
-      }
-      case 2:
-      {
-        $g=$no;
-        break;
-      }
-    }
        echo "<tbody>
           <tr>
-          <td>$g</td>
+          <td>$no</td>
              <td>$r[nis]</td>
              <td>$r[nama]</td>
              <td>$r[benar]</td>

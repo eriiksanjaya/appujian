@@ -1,16 +1,9 @@
 <section class="content-header">
   <h1>
     Aktifkan Tugas
-    <small>preview</small>
   </h1>
-  <!-- <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Tables</a></li>
-    <li class="active">Simple</li>
-  </ol> -->
 </section>
 
-<!-- Main content -->
 <section class="content">
   <div class="row">
 <?php
@@ -28,9 +21,7 @@ switch($_GET['act']){
 
     if ($_SESSION['guru_id']){
 	
-	$p      = new Paging;
-    $batas  = 20;
-    $posisi = $p->cariPosisi($batas);
+
     ?>
     <!-- Main content -->
       <div class="box">
@@ -152,22 +143,9 @@ ORDER BY tb_mapel.mata_pelajaran,tb_kelas_sub.nama_kelas,tb_materi_soal.materi A
           <th>Status</th>
           <th>Aksi</th>
           </tr></thead>"; 
-    $no=$posisi+1;
+    $no=1;
     while ($r=mysqli_fetch_assoc($tampil)){
-      $tgl = tgl_indo($r['tgl']);
-		$lebar=strlen($no);
-    switch($lebar){
-      case 1:
-      {
-        $g="0".$no;
-        break;     
-      }
-      case 2:
-      {
-        $g=$no;
-        break;     
-      }      
-    }
+      $tgl = app_date_value($r['tgl'], "d M Y");
        echo "<tbody><tr>
 	   		<td>$no</td>
             <td>$r[mata_pelajaran]</td>

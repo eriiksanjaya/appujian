@@ -2,35 +2,22 @@
   <h1>
     Kelas Detail
   </h1>
-  <!-- <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Tables</a></li>
-    <li class="active">Simple</li>
-  </ol> -->
 </section>
 
-<!-- Main content -->
 <section class="content">
   <div class="row">
-
 
 <?php
  if (empty($_SESSION['admin_id'])){
   echo "string";
 }
 else{
-error_reporting(0);
 $aksi="pages/kelas_sub/aksi_sub_kelas.php";
 switch($_GET['act']){
   default:
     if ($_SESSION['level']=='admin'){
   echo"<div class='col-md-12'>";
 
-		
-	$p      = new Paging;
-    $batas  = 10;
-    $posisi = $p->cariPosisi($batas);
-	
       $tampil = mysqli_query($conn, "SELECT
 tb_kelas_sub.kelas_sub_id,
 tb_kelas_sub.kelas_id,
@@ -64,24 +51,11 @@ ORDER BY tb_kelas_sub.nama_kelas ASC");
             </thead>
             <tbody>
             <?php
-            $no = $posisi+1;
-            while ($r=mysqli_fetch_assoc($tampil)){
-            $lebar=strlen($no);
-            switch($lebar){
-              case 1:
-              {
-                $g="0".$no;
-                break;     
-              }
-              case 2:
-              {
-                $g=$no;
-                break;     
-              }      
-            } ?>
+            $no = 1;
+            while ($r=mysqli_fetch_assoc($tampil)){ ?>
 
             <tr>
-              <td><?php echo $g; ?></td>
+              <td><?php echo $no; ?></td>
               <td><span class=""><?php echo $r['kelas']; ?></span></td>
               <td><span class=""><?php echo $r['nama_kelas']; ?></span></td>
               <td><span class=""><?php echo $r['b_kelassub']; ?></span></td>

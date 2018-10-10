@@ -1,5 +1,0 @@
-RewriteEngine on
-
-RewriteRule ^beranda$ pages.php?q=beranda [L]
-
-Options All -Indexes

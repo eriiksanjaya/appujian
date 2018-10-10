@@ -7,7 +7,6 @@ include '../config/url.php';
 $cek = mysqli_query($conn, $sql);*/
 
 session_start();
-error_reporting(0);
 $get_data = mysqli_query($conn, "SELECT * FROM ujian_kerjakan WHERE kerjakan_userid = '$_SESSION[siswa_id]'
 			AND YEAR(kerjakan_createdate) = '$y' AND MONTH(kerjakan_createdate) = '$m' AND DAY(kerjakan_createdate) = '$d'
 			AND kerjakan_status = 'mulai' AND kerjakan_info = 'mengerjakan'
@@ -43,8 +42,19 @@ $get_data = mysqli_query($conn, "SELECT * FROM ujian_kerjakan WHERE kerjakan_use
         $.ajax({
             type : "POST",
             url  : "<?php echo $base_url; ?>/siswa/pages/kerjakansoal/update.php",
+            dataType: 'json',
             data : "soal_id=" + soal_id + "&soal_pilihan_id=" + soal_pilihan_id + "&sai=" + sai  + "&msi=" + msi
+        })
+        .done(function(res) {
+        	if (res.status) {
+        		console.log(res.message);
+        	} else {
+        		console.log(res.message);
+        	}
+        })
+        .fail(function() {
+        })
+        .always(function() {
         });
-
     }
 </script>

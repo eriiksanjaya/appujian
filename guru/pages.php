@@ -25,21 +25,15 @@ $row = mysqli_fetch_assoc($data);
 
     <title><?php echo $row['judul'] ?></title>
 
-    <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/font-awesome.min.css">
+  <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/ionicons.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/datatable/dataTables.bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/plugins/timepicker/bootstrap-timepicker.min.css">
-  <!-- Select2 -->
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/plugins/select2/select2.min.css">
-  <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/ep/style.css">
-
 
 </head>
 
@@ -51,9 +45,7 @@ $row = mysqli_fetch_assoc($data);
 <?php include'footer.php'; ?>
 
 
-<!-- jQuery 2.2.3 -->
 <script src="<?php echo $base_url; ?>/assets/lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
-
 <script src="<?php echo $base_url; ?>/assets/datatable/jquery.dataTables.min.js"></script>
 <script src="<?php echo $base_url; ?>/assets/datatable/dataTables.bootstrap.min.js"></script>
 
@@ -62,14 +54,9 @@ $row = mysqli_fetch_assoc($data);
     $('#example').DataTable();
 } );
 </script>
-<!-- Bootstrap 3.3.6 -->
 <script src="<?php echo $base_url; ?>/assets/lte/bootstrap/js/bootstrap.min.js"></script>
-<!-- Select2 -->
 <script src="<?php echo $base_url; ?>/assets/lte/plugins/select2/select2.full.min.js"></script>
-<!-- AdminLTE App -->
 <script src="<?php echo $base_url; ?>/assets/lte/dist/js/app.min.js"></script>
-<!-- SlimScroll 1.3.0 -->
-<script src="<?php echo $base_url; ?>/assets/lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 
 <script type="text/javascript">
  $(document).ready(function(){
@@ -123,7 +110,4 @@ $('.pilihan').each(function(index, el) {
 
 </script>
 
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo $base_url; ?>/assets/lte/dist/js/pages/dashboard2.js"></script>
-<!-- AdminLTE App -->
 <script src="<?php echo $base_url; ?>/assets/lte/dist/js/app.min.js"></script>

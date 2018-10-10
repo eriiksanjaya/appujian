@@ -4,7 +4,6 @@
   </h1>
 </section>
 
-<!-- Main content -->
 <section class="content">
   <div class="row">
 <?php
@@ -12,16 +11,12 @@
  	echo "string";
 }
 else{
-error_reporting(0);
 $aksi="pages/guru/aksi_guru.php";
 switch($_GET['act']){
   default:
   
     if ($_SESSION['level']=='admin'){
   echo"<div class='col-md-12'>";
-	$p      = new Paging;
-    $batas  = 20;
-    $posisi = $p->cariPosisi($batas);
 	
       $tampil = mysqli_query($conn, "SELECT * FROM tb_guru ORDER BY nip ASC");
 ?>
@@ -59,24 +54,11 @@ switch($_GET['act']){
               </thead>
               <tbody>
               <?php
-              $no = $posisi+1;
-              while ($r=mysqli_fetch_assoc($tampil)){
-              $lebar=strlen($no);
-              switch($lebar){
-                case 1:
-                {
-                  $g="0".$no;
-                  break;     
-                }
-                case 2:
-                {
-                  $g=$no;
-                  break;     
-                }      
-              } ?>
+              $no = 1;
+              while ($r=mysqli_fetch_assoc($tampil)){ ?>
 
               <tr>
-                <td><?php echo $g; ?></td>
+                <td><?php echo $no; ?></td>
                 <td><span class=""><?php echo $r['nip']; ?></span></td>
                 <td><span class=""><?php echo $r['nama']; ?></span></td>
                 <td><span class="<?php if($r['kelamin'] == 'Laki-Laki'){ echo "label label-primary"; }else{ echo "label label-warning"; } ?>"><?php echo $r['kelamin']; ?></span></td>

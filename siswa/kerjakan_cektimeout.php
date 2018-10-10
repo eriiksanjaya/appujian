@@ -1,7 +1,5 @@
 <?php
 include '../config/koneksi.php';
-include '../config/datetime.php';
-include '../config/url.php';
 
 session_start();
 

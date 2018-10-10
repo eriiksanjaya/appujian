@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 session_start();
  if (empty($_SESSION['guru_id'])){
   header("location:../../index.php");

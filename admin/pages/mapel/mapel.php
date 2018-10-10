@@ -2,14 +2,8 @@
   <h1>
     Mata Pelajaran
   </h1>
-  <!-- <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Tables</a></li>
-    <li class="active">Simple</li>
-  </ol> -->
 </section>
 
-<!-- Main content -->
 <section class="content">
   <div class="row">
 <?php
@@ -17,18 +11,12 @@
   echo "string";
 }
 else{
-error_reporting(0);
 $aksi="pages/mapel/aksi_mapel.php";
 switch($_GET['act']){
   default:
     if ($_SESSION['level']=='admin'){
   echo"<div class='col-md-12'>";
 
-	
-	$p      = new Paging;
-    $batas  = 10;
-    $posisi = $p->cariPosisi($batas);
-	
       $tampil = mysqli_query($conn, "SELECT * FROM tb_mapel ORDER BY mata_pelajaran ASC");
       ?>
       <!-- Main content -->
@@ -49,24 +37,11 @@ switch($_GET['act']){
             </thead>
             <tbody>
             <?php
-            $no = $posisi+1;
-            while ($r=mysqli_fetch_assoc($tampil)){
-            $lebar=strlen($no);
-            switch($lebar){
-              case 1:
-              {
-                $g="0".$no;
-                break;     
-              }
-              case 2:
-              {
-                $g=$no;
-                break;     
-              }      
-            } ?>
+            $no = 1;
+            while ($r=mysqli_fetch_assoc($tampil)){ ?>
 
             <tr>
-              <td><?php echo $g; ?></td>
+              <td><?php echo $no; ?></td>
               <td><span class=""><?php echo $r['mata_pelajaran']; ?></span></td>
               <td><span class=""><?php echo $r['blokir']; ?></span></td>
               <td>

@@ -1,9 +1,7 @@
 <?php
     include '../config/koneksi.php';
     include '../config/url.php';
-    include '../config/fungsi_indotgl.php';
     include '../config/datetime.php';
-    include '../config/class_paging.php';
 
     session_start();
     timeout($_SESSION['detik']);
@@ -23,16 +21,14 @@
 <head>
     <title>APP Ujian</title>
     <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/ionicons.min.css">
     <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/ep/style.css">
-  <link rel="stylesheet" href="<?php echo $base_url ?>/assets/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/css/sweetalert2.min.css">
 
     <script src='<?php echo $base_url; ?>/assets/js/jquery-2.1.3.min.js'></script>
-
-
 </head>
 <body class="hold-transition skin-blue layout-top-nav">
     <div class="wrapper">
@@ -66,7 +62,6 @@
 
     </div>
 
-
     <script src='<?php echo $base_url; ?>/assets/js/jquery.countdown.min.js'></script>
     <script type="text/javascript">
         $(function() {
@@ -83,8 +78,7 @@
     </script>
 
     <script src="<?php echo $base_url; ?>/assets/lte/dist/js/app.min.js"></script>
-<script src="<?php echo $base_url ?>/assets/js/sweetalert2.min.js"></script>
-
+    <script src="<?php echo $base_url ?>/assets/js/sweetalert2.min.js"></script>
     <script src='<?php echo $base_url; ?>/assets/js/jquery.slimscroll.min.js'></script>
     
     <script type="text/javascript">
@@ -92,9 +86,6 @@
             height: '420px',
             alwaysVisible: true
         });
-
-
-
     </script>
 </body>
 </html>

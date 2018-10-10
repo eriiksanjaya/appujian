@@ -13,7 +13,6 @@
  	echo "string";
 }
 else{
-error_reporting(0);
 $aksi="pages/siswa/aksi_siswa.php";
 
 switch($_GET['act']){
@@ -87,10 +86,6 @@ case "tampilsiswa";
 	
 	<?php $file="&act=tampilsiswa&kelas_sub_id='$_GET[kelas_sub_id]'";
 	
-	$p      = new PagingSiswa;
-    $batas  = 20;
-    $posisi = $p->cariPosisi($batas);
-	
       $tampil = mysqli_query($conn, "SELECT
 tb_siswa.id,
 tb_siswa.nis,
@@ -120,9 +115,8 @@ ORDER BY tb_siswa.nis"); ?>
             </thead>
             <tbody>
             <?php
-            $no = $posisi+1;
-            while ($r=mysqli_fetch_assoc($tampil)){
-            $lebar=strlen($no); ?>
+            $no = 1;
+            while ($r=mysqli_fetch_assoc($tampil)){ ?>
             <tr>
               <td><?php echo $no; ?></td>
               <td><span class=""><?php echo $r['id']; ?></span></td>

@@ -49,12 +49,14 @@
 									LEFT JOIN tb_materi_soal ms ON uk.kerjakan_materisoalid = ms.materi_soal_id
 								";
 
+								$where = "";
+
 
 								$sql = "SELECT uk.*, s.nis, s.nama, ks.nama_kelas, ms.materi FROM ujian_kerjakan uk {$where} {$join}";
 								$getdata = mysqli_query($conn, $sql) or trace($conn->error,false);
 								// foreach ($data as $key => $row) {
 								// while($row=mysqli_fetch_assoc($getdata)) {
-								// trace($conn);
+								// trace($sql);
             					while ($row=mysqli_fetch_assoc($getdata)){
 							?>
 									<tr class="<?php echo $row['kerjakan_id']; ?>">

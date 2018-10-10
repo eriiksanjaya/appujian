@@ -243,7 +243,6 @@
             console.log("error");
         })
         .always(function() {
-            console.log("complete");
         });
 
         $.ajax({
@@ -259,7 +258,6 @@
         	console.log("error");
         })
         .always(function() {
-        	console.log("complete");
         });
         
     }
