@@ -12,7 +12,7 @@
 }
 else{
 $aksi="pages/guru/aksi_guru.php";
-switch($_GET['act']){
+switch(@$_GET['act']){
   default:
   
     if ($_SESSION['level']=='admin'){

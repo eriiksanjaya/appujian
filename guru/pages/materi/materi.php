@@ -14,7 +14,7 @@
 }
 else{
 $aksi="pages/materi/aksi_materi.php";
-switch($_GET['act']){
+switch(@$_GET['act']){
   default:
   echo"<div class='col-md-8'>";
 

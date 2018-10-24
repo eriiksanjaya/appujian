@@ -11,9 +11,8 @@
   header("location:../../index.php");
 }
 else{
-include'../../config/koneksi.php';
 
-switch($_GET['act']){
+switch(@$_GET['act']){
 
   default:
   echo"<div class='col-md-12'>
@@ -40,7 +39,7 @@ while($r=mysqli_fetch_assoc($menu)){
 	echo"
 
 				<a class='btn btn-app' href=?q=nilai-siswa&act=tampilmateri&kelas_sub_id=$r[kelas_sub_id]>
-          <span class='badge bg-aqua'>@$jml_siswa</span>
+          <span class='badge bg-aqua'></span>
           <i class='fa fa-home'></i> $r[nama_kelas]
         </a>
       ";

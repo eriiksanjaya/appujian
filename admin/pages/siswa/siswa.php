@@ -15,7 +15,7 @@
 else{
 $aksi="pages/siswa/aksi_siswa.php";
 
-switch($_GET['act']){
+switch(@$_GET['act']){
   
   default:
 

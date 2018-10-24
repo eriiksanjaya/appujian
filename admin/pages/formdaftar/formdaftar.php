@@ -13,7 +13,7 @@
 }
 else{
 $aksi="pages/formdaftar/aksi_formdaftar.php";
-switch($_GET['act']){
+switch(@$_GET['act']){
   default:
     if ($_SESSION['level']=='admin'){
 

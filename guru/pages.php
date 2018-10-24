@@ -1,9 +1,7 @@
 <?php
 include '../config/koneksi.php';
 include '../config/url.php';
-include '../config/fungsi_indotgl.php';
 include '../config/datetime.php';
-include '../config/class_paging.php';
 
 session_start();
 if(empty($_SESSION['guru_id']) OR $_SESSION['level'] != 'guru'){

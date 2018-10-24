@@ -12,7 +12,7 @@
 }
 else{
 $aksi="pages/mapel/aksi_mapel.php";
-switch($_GET['act']){
+switch(@$_GET['act']){
   default:
     if ($_SESSION['level']=='admin'){
   echo"<div class='col-md-12'>";

@@ -15,7 +15,7 @@
 }
 else{
 $aksi="pages/soal/aksi_soal.php";
-switch($_GET['act']){
+switch(@$_GET['act']){
   default:
   echo"<div class='col-md-6'>";
 

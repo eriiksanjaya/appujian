@@ -10,6 +10,17 @@ $conn = mysqli_connect($server,$username,$password, $database) or die("Koneksi g
 
 
 // buat helper
+if( !function_exists('get_versi'))
+{
+	function get_versi()
+	{
+		
+		$versi = "2.2";
+
+		return $versi;
+	}
+}
+
 if ( !function_exists('get_file_extensions') )
 {
 	function get_file_extensions( $string = "" ) {
@@ -266,18 +277,6 @@ if( !function_exists('auto_nomor'))
 		return $no;
 	}
 }
-
-if( !function_exists('get_versi'))
-{
-	function get_versi()
-	{
-		
-		$versi = "2.1";
-
-		return $versi;
-	}
-}
-
 
 if( !function_exists('timeout'))
 {
