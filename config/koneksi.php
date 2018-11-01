@@ -5,7 +5,7 @@ $username = "root";
 $password = "";
 $database = "appujian";
 
-// Koneksi dan memilih database di server
+// Koneksi
 $conn = mysqli_connect($server,$username,$password, $database) or die("Koneksi gagal");
 
 

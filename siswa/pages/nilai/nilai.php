@@ -126,7 +126,7 @@ INNER JOIN tb_siswa ON tb_nilai_siswa.siswa_id = tb_siswa.siswa_id
 INNER JOIN tb_kelas_sub ON tb_siswa.kelas_sub_id = tb_kelas_sub.kelas_sub_id
 INNER JOIN tb_materi_soal ON tb_nilai_siswa.materi_soal_id = tb_materi_soal.materi_soal_id
 WHERE tb_nilai_siswa.materi_soal_id = '$_GET[msi]' AND tb_kelas_sub.kelas_sub_id = '$_GET[ksi]' AND tb_nilai_siswa.siswa_id = '$_SESSION[siswa_id]' AND tb_nilai_siswa.tgl = '$_GET[tgl]'
-ORDER BY tb_nilai_siswa.tgl DESC, tb_nilai_siswa.jam ASC LIMIT $posisi,$batas");
+ORDER BY tb_nilai_siswa.tgl DESC, tb_nilai_siswa.jam ASC");
 
 
     $he = mysqli_query($conn, "SELECT

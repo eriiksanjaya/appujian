@@ -27,11 +27,12 @@ $row = mysqli_fetch_assoc($data);
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/ionicons.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/datatable/dataTables.bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/plugins/timepicker/bootstrap-timepicker.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/plugins/select2/select2.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/ep/style.css">
+
+  <script src="<?php echo $base_url; ?>/assets/lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
 
 </head>
 
@@ -43,7 +44,6 @@ $row = mysqli_fetch_assoc($data);
 <?php include'footer.php'; ?>
 
 
-<script src="<?php echo $base_url; ?>/assets/lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="<?php echo $base_url; ?>/assets/datatable/jquery.dataTables.min.js"></script>
 <script src="<?php echo $base_url; ?>/assets/datatable/dataTables.bootstrap.min.js"></script>
 
@@ -107,5 +107,3 @@ $('.pilihan').each(function(index, el) {
 });
 
 </script>
-
-<script src="<?php echo $base_url; ?>/assets/lte/dist/js/app.min.js"></script>
