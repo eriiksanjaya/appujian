@@ -44,6 +44,14 @@ if ( !function_exists('kelamin') )
 	}
 }
 
+if ( !function_exists('app_version') )
+{
+	function app_version(){
+		$string = "<b>Version <span style='color: #3C82C0'>" . get_versi() . "</span></b> | Check for updates : <a href='https://github.com/eriiksanjaya/appujian' target='_blank'>Github</a>";
+		echo $string;
+	}
+}
+
 if ( !function_exists('trace') )
 {
 	function trace($data, $die = true){

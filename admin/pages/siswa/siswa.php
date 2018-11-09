@@ -215,6 +215,7 @@ echo"
     <?php 
 
     $edit=mysqli_query($conn, "SELECT
+tb_siswa.`id`,
 tb_siswa.`pass`,
 tb_siswa.siswa_id,
 tb_siswa.nis,
