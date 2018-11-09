@@ -2,7 +2,7 @@
 include 'config/koneksi.php';
 include 'config/datetime.php';
 include 'config/url.php';
-error_reporting(0);
+
 session_start();
 if(isset($_SESSION['siswa_id'])){
   header("location:$base_url/siswa");

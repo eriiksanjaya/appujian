@@ -7,7 +7,7 @@ else{
 $aksi="pages/profil/aksi_profil.php";
 
 $siswa = mysqli_query($conn, "SELECT * FROM vw_siswa
-WHERE siswa_id = '$_SESSION[siswa_id]'");
+WHERE siswa_id = '$_SESSION[siswa_id]'") or trace($conn);
 $img = mysqli_fetch_assoc($siswa);
 
 $teman = mysqli_query($conn, "SELECT * FROM vw_siswa WHERE kelas_sub_id = '$img[kelas_sub_id]' AND siswa_id != '$_SESSION[siswa_id]'");
