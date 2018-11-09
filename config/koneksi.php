@@ -3,7 +3,7 @@
 $server = "localhost";
 $username = "root";
 $password = "";
-$database = "appujian";
+$database = "cusj";
 
 // Koneksi
 $conn = mysqli_connect($server,$username,$password, $database) or die("Koneksi gagal");
@@ -98,13 +98,16 @@ if ( !function_exists('is_pilih') )
         $kerjakan = json_decode($row['kerjakan_data']);
 
         $id = [];
-        foreach ($kerjakan->jawaban as $key => $value) {
-        	$id['pilihan'][$key] = $key.$value;
-        }
 
-	    if (in_array($pilihan, $id['pilihan'])) {
-		    return true;
-	    }
+        if (isset($kerjakan->jawaban)) {
+	        foreach ($kerjakan->jawaban as $key => $value) {
+	        	$id['pilihan'][$key] = $key.$value;
+	        }
+
+		    if (in_array($pilihan, $id['pilihan'])) {
+			    return true;
+		    }
+        }
 
 	    return false;
 	}

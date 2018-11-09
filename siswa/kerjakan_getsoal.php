@@ -6,6 +6,7 @@ include '../config/url.php';
 /*$sql = "SELECT * FROM ujian_kerjakan WHERE kerjakan_userid = '{$_SESSION['siswa_id']}'";
 $cek = mysqli_query($conn, $sql);*/
 
+
 session_start();
 $get_data = mysqli_query($conn, "SELECT * FROM ujian_kerjakan WHERE kerjakan_userid = '$_SESSION[siswa_id]'
 			AND YEAR(kerjakan_createdate) = '$y' AND MONTH(kerjakan_createdate) = '$m' AND DAY(kerjakan_createdate) = '$d'
@@ -19,9 +20,11 @@ $get_data = mysqli_query($conn, "SELECT * FROM ujian_kerjakan WHERE kerjakan_use
 		$index = $_GET['nomor'];
 		$getsoal = $kerjakan->soal[$index];
 
+        $_soal = str_replace("localhost", $server, $getsoal->soal);
+
 ?>
 
-<h4><span class="badge btn-twitter"><?php echo $no.'</span> <span class="pilihan-ep">'.$getsoal->soal; ?></span></h4>
+<h4><span class="badge btn-twitter"></span> <span class="pilihan-ep"><?php echo $_soal; ?></span></h4>
 <div class='row'>
 	<div class='col-md-12'>
 		<span class="badge bg-teal">A</span> <input <?php if(is_pilih($getsoal->soal_id.'a',$getsoal->soal_aktif_id,$getsoal->materi_soal_id, $conn) == '1') echo 'checked'; ?> type='radio' value='a' name='pilih[<?php echo $getsoal->soal_id; ?>]' onclick="update_ganda(<?php echo $getsoal->soal_id ?>,'a',<?php echo $getsoal->soal_aktif_id ?>,<?php echo $getsoal->materi_soal_id ?>)"><span class="pilihan-ep"><?php echo $getsoal->a ?></span><br>
