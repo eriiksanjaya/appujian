@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/ep/style.css">
     <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/fonts/fa/v5.5.0/css/regular.min.css" integrity="sha384-z3ccjLyn+akM2DtvRQCXJwvT5bGZsspS4uptQKNXNg778nyzvdMqiGcqHVGiAUyY" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/fonts/fa/v5.5.0/css/fontawesome.min.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+
 
     <script src='<?php echo $base_url; ?>/assets/js/jquery-2.1.3.min.js'></script>
 </head>

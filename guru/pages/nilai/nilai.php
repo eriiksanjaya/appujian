@@ -77,7 +77,7 @@ INNER JOIN tb_pilih_mapel ON tb_materi_soal.pilih_mapel_id = tb_pilih_mapel.pili
 INNER JOIN tb_mapel ON tb_pilih_mapel.mapel_id = tb_mapel.mapel_id
 INNER JOIN tb_siswa ON tb_nilai_guru.siswa_id = tb_siswa.siswa_id AND tb_siswa.kelas_sub_id = tb_soal_aktif.kelas_sub_id
 WHERE tb_materi_soal.guru_id='$_SESSION[guru_id]' AND tb_soal_aktif.kelas_sub_id = '$_GET[kelas_sub_id]'
-GROUP BY materi_soal_id
+GROUP BY materi_soal_id, tb_nilai_guru.tgl
 ORDER BY tb_nilai_guru.nilai_id DESC");
 
 

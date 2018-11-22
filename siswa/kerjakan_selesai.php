@@ -105,18 +105,21 @@
             <div class='box box-primary'>
                 <div class='box-body'>
                     <?php
-                    if($persen_benar >=90){
+                    if($persen_benar >=89){
                         echo "
-                        <h2 class='text-center'>Halo $_SESSION[nama_siswa], Nilai Anda <span class='text-primary'><strong>MEMUASKAN</strong> <i class='fa fa-smile-o'></i> <i class='fa fa-thumbs-o-up'></i> <i class='fa fa-trophy'></i></span></h2>";
-                    } elseif ($persen_benar>=80) {
+                        <h2 class='text-center'>Halo $_SESSION[nama_siswa], Nilai Anda <span class='text-primary'><strong>MEMUASKAN</strong> <i class='far fa-grin-hearts'></i> </span></h2>";
+                    } elseif ($persen_benar>=78) {
                         echo "
-                        <h2 class='text-center'>Halo $_SESSION[nama_siswa], Nilai Anda <span class='text-success'><strong>BAGUS</strong> <i class='fa fa-smile-o'></i> <i class='fa fa-thumbs-o-up'></i></span></h2>";
-                    } elseif ($persen_benar>=65) {
+                        <h2 class='text-center'>Halo $_SESSION[nama_siswa], Nilai Anda <span class='text-success'><strong>BAGUS</strong> <i class='far fa-grin-wink'></i> </span></h2>";
+                    } elseif ($persen_benar>=67) {
                         echo "
-                        <h2 class='text-center'>Halo $_SESSION[nama_siswa], Nilai Anda <span class='text-warning'><strong>CUKUP</strong> <i class='fa fa-smile-o'></i></span></h2>";
+                        <h2 class='text-center'>Halo $_SESSION[nama_siswa], Nilai Anda <span class='text-warning'><strong>CUKUP</strong> <i class='far fa-grin'></i></span></h2>";
+                    } elseif ($persen_benar>=51) {
+                        echo "
+                        <h2 class='text-center'>Halo $_SESSION[nama_siswa], Nilai Anda <span class='text-warning'><strong>KURANG</strong> <i class='far fa-grimace'></i></span></h2>";
                     } else {
                         echo "
-                        <h2 class='text-center'>Halo $_SESSION[nama_siswa], Nilai Anda <span class='text-danger'><strong>KURANG</strong> <i class='fa fa-frown-o'></i></span></h2>";
+                        <h2 class='text-center'>Halo $_SESSION[nama_siswa], Nilai Anda <span class='text-danger'><strong>GAGAL</strong> <i class='far fa-frown-open'></i></span></h2>";
                     }
                     ?>
                 </div>
