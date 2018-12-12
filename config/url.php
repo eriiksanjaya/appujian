@@ -1,22 +1,28 @@
 <?php
-	$folder = "appujian";
-    $server = $_SERVER['HTTP_HOST'];
-    $scheme = $_SERVER['REQUEST_SCHEME'];
+	$folder = "";
+	$server = $_SERVER['HTTP_HOST'];
 
-    $auto = true; // ganti true atau false
+	$local = true; // ganti true atau false
+	/*
+	(ganti true atau false)
+	GANTI $local = false, jika sudah dionlinekan.
+	*/
 
-    /**
-     * undocumented class variable
-     *
-     * @var auto boolean
-     * jika ingin menggunakan url manual ganti true jadi false dan
-     * ganti urlnya dengan domain Anda jika sudah online
-     **/
+	$ssl = false;
+	/* 
+	(ganti true atau false)
+	ganti true jika sudah menggunakan SSL*/
 
-    if ($auto) {
-		$base_url = $scheme ."://" .$server . "/" . $folder;
+	if ($ssl) {
+		$scheme = "https";
+	} else {
+		$scheme = "http";
+	}
+
+
+    if ($local) {
+        $base_url = "http://localhost/appujian";
     } else {
-		$base_url = "http://localhost/appujian";
+       	$base_url = $scheme . "://" .$server . "/" . $folder;
     }
-
 ?>
