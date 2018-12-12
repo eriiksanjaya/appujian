@@ -1,13 +1,20 @@
 <?php
-
+session_start();
 $server = "localhost";
 $username = "root";
 $password = "";
 $database = "appujian";
 
+/**
+* TIMEOUT
+* Jika tidak ada aktivitas dalam mengerjakan soal, selama timeout yang telah ditentukan, maka tugas dianggap selesai.
+* @var detik int
+**/
+
+$timeout  = 1000; // timeout idle (detik)
+
 // Koneksi
 $conn = mysqli_connect($server,$username,$password, $database) or die("Koneksi gagal");
-
 
 // buat helper
 if( !function_exists('get_versi'))
@@ -315,7 +322,7 @@ if( !function_exists('cek_timeout'))
 }
 
 
-if( !function_exists('logout'))
+if( !function_exists('logout')) 
 {
 	function logout($base_url = null)
 	{
@@ -325,7 +332,147 @@ if( !function_exists('logout'))
 	}
 }
 
-if (!function_exists('app_date_value')) 
+if (!function_exists('app_insert')) {
+	function app_insert($table, $data, $conn) {
+
+		$_data['status'] = false;
+		$_data['message'] = "Data gagal disimpan";
+
+
+		$_column = [];
+		$_value = [];
+		foreach ($data as $key => $value) {
+			$_column[] = $key;
+			$_value[] = "'" . $value . "'";
+			# code...
+		}
+
+		$_column = implode(',', $_column);
+		$_value = implode(',', $_value);
+
+
+		$sql = "INSERT INTO {$table} ({$_column}) VALUES({$_value})";
+		$result = mysqli_query($conn, $sql);
+
+		if ($result) {
+			$_data['status'] 	= true;
+			$_data['message'] 	= "Data berhasil disimpan";
+			$_data['sql'] 		= $sql;
+		}
+
+		return $_data;
+	}
+}
+
+
+if (!function_exists('app_update')) {
+	function app_update($table, $data, $where, $conn) {
+		
+		$_data['status'] = false;
+		$_data['message'] = "Data gagal diupdate";
+
+		$keyval = [];
+		foreach ($data as $key => $value) {
+			$keyval[] = $key . "='" . $value . "'";
+		}
+
+		$keyval = implode(',', $keyval);
+
+		$sql = "UPDATE {$table} SET {$keyval} WHERE {$where}";
+		$result = mysqli_query($conn, $sql) or trace($conn);
+
+		if ($result) {
+			$_data['status'] 	= true;
+			$_data['message'] 	= "Data berhasil diupdate";
+			$_data['sql'] 		= $sql;
+		}
+
+		return $_data;
+	}
+}
+
+if (!function_exists('app_delete')) {
+	function app_delete($table, $where, $conn) {
+		
+		$_data['status'] = false;
+		$_data['message'] = "Data gagal didelete";
+
+		$sql = "DELETE FROM {$table} WHERE  $where";
+		$result = mysqli_query($conn, $sql) or trace($conn);
+
+		if ($result) {
+			$_data['status'] 	= true;
+			$_data['message'] 	= "Data berhasil didelete";
+			$_data['sql'] 		= $sql;
+		}
+
+		return $_data;
+	}
+}
+
+if (!function_exists('app_getdata')) {
+	function app_getdata($conn, $table, $select = null, $where = null, $join = null, $group = null) {
+		
+		$_data['status'] = false;
+		$_data['message'] = "Data tidak ditemukan";
+
+		$group = ($group != null) ? "GROUP BY " . $group : null;
+		$select = ($select != null) ? $select : "*";
+		$where = ($where == null) ? null : "WHERE " . $where;
+
+		$sql = "SELECT {$select} FROM {$table} {$join} {$where} {$group}";
+		$getdata = mysqli_query($conn, $sql) or trace($conn);
+
+		if ($getdata->num_rows > 0) {
+			$data = [];
+			while ($row = mysqli_fetch_assoc($getdata)) {
+				$data[] = $row;
+			}
+
+			$_data['status'] 	= true;
+			$_data['message'] = "Data ditemukan";
+			$_data['sql'] 		= $sql;
+			$_data['data'] 		= $data;
+		}
+
+		return $_data;
+	}
+}
+
+if (!function_exists('app_session')) {
+	function app_session($data = null) {
+
+		if (!is_null($data)) {
+			$sesi = $_SESSION[$data];
+		} else {
+			$sesi = $_SESSION;
+		}
+		return $sesi;
+	}
+}
+
+if (!function_exists('validation_form')) {
+	function validation_form($input = [], $array = []) {
+		$error = [];
+
+		foreach ($array as $key => $value) {
+			if ($input[$value] == "") {
+				$error[] = "<li>Bidang <strong>" . ucfirst($value) . "</strong> dibutuhkan</li>";
+			}
+		}
+
+		return $error;
+	}
+}
+
+
+if (!function_exists('deniedpage')) {
+	function deniedpage( $redirect ) {
+	    header('location:$redirect');
+	}
+}
+
+if (!function_exists('app_date_value'))
 {
     function app_date_value($date, $format = 'd-m-Y', $from = '')
     {

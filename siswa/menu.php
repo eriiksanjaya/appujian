@@ -28,7 +28,7 @@
 
         <?php  
           
-          $data = mysqli_query($conn, "SELECT * FROM ujian_menu WHERE menu_status = '1' AND menu_issiswa = 1 ORDER BY menu_id ASC");
+          $data = mysqli_query($conn, "SELECT * FROM ujian_menu WHERE menu_status = '1' AND menu_issiswa = 1 ORDER BY menu_sort ASC");
           while($row=mysqli_fetch_assoc($data))
           {
             

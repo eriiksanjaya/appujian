@@ -27,7 +27,6 @@ $row = mysqli_fetch_assoc($data);
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/ionicons.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/datatable/dataTables.bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/plugins/select2/select2.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/lte/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/ep/style.css">
@@ -53,8 +52,8 @@ $row = mysqli_fetch_assoc($data);
 } );
 </script>
 <script src="<?php echo $base_url; ?>/assets/lte/bootstrap/js/bootstrap.min.js"></script>
-<script src="<?php echo $base_url; ?>/assets/lte/plugins/select2/select2.full.min.js"></script>
 <script src="<?php echo $base_url; ?>/assets/lte/dist/js/app.min.js"></script>
+<script type="text/javascript" src="<?php echo $base_url; ?>/assets/plugins/select2/js/select2.js"></script>
 
 <script type="text/javascript">
  $(document).ready(function(){
@@ -76,31 +75,22 @@ $row = mysqli_fetch_assoc($data);
 <script src="<?php echo $base_url; ?>/assets/js/ckeditor/ckeditor.js"></script>
 <script src="<?php echo $base_url; ?>/assets/js/ckeditor/adapters/jquery.js"></script>
 <script type="text/javascript">
-/*$( document ).ready( function() {
-    $( 'textarea#editor' ).ckeditor();
-    CKEDITOR.inline( 'a');
-    CKEDITOR.inline( 'b');
-    CKEDITOR.inline( 'c');
-    CKEDITOR.inline( 'd');
-    CKEDITOR.inline( 'e');
-} );*/
-
 var url = '<?php echo $base_url; ?>';
-var data = {
+var _data = {
     'filebrowserBrowseUrl': url+'/ckfinder/ckfinder.html',
     'filebrowserUploadUrl': url+'/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
 }
 
 function ckfinder(tipe, id) {
     if(tipe == 'replace') {
-        CKEDITOR.replace(id, data);
+        CKEDITOR.replace(id, _data);
     } else {
-        CKEDITOR.inline(id, data);
+        CKEDITOR.inline(id, _data);
     }
 }
 
 CKEDITOR.disableAutoInline = true;
-ckfinder('replace','editor');
+// ckfinder('replace','editor');
 $('.pilihan').each(function(index, el) {
     var id = $(this).find('textarea').attr('id');
     ckfinder('inline',id);

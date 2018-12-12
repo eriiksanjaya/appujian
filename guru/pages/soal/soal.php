@@ -172,6 +172,20 @@ WHERE tb_materi_soal.guru_id= '$_SESSION[guru_id]' AND tb_materi_soal.materi_soa
 </div>
 </div>
 </div>
+<script src="<?php echo $base_url; ?>/assets/js/ckeditor/ckeditor.js"></script>
+<script src="<?php echo $base_url; ?>/assets/js/ckeditor/adapters/jquery.js"></script>
+<script>
+  $(function() {
+    var url = '<?php echo $base_url; ?>';
+    var _data = {
+        'filebrowserBrowseUrl': url+'/ckfinder/ckfinder.html',
+        'filebrowserUploadUrl': url+'/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+    }
+    
+    CKEDITOR.replace('editor', _data);
+
+  });
+</script>
 <?php }
      break;
 
@@ -412,6 +426,21 @@ $m=mysqli_fetch_assoc($mtri);?>
 </div>
 </form>
 "; ?>
+<script src="<?php echo $base_url; ?>/assets/js/ckeditor/ckeditor.js"></script>
+<script src="<?php echo $base_url; ?>/assets/js/ckeditor/adapters/jquery.js"></script>
+<script>
+  $(function() {
+    var url = '<?php echo $base_url; ?>';
+    var _data = {
+        'filebrowserBrowseUrl': url+'/ckfinder/ckfinder.html',
+        'filebrowserUploadUrl': url+'/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+    }
+    
+    CKEDITOR.replace('editor', _data);
+
+  });
+</script>
+
 </div>
 </div>
 </div>
@@ -420,3 +449,4 @@ $m=mysqli_fetch_assoc($mtri);?>
 }
 ?>
 </section>
+
