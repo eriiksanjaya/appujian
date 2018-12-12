@@ -79,7 +79,7 @@
 												>Endtask</button>
 											<?php } ?>
 
-											<?php if (app_date_value($row['kerjakan_mulai'], "Y-m-d") == date("Y-m-d")) { ?>
+											<?php if (app_date_value($row['kerjakan_mulai'], "Y-m-d") != date("Y-m-d")) { ?>
 
 												<button class="btn btn-sm btn-flat btn-warning" id="action_endtask" data-action="delete"
 												data-value="<?php echo $row['kerjakan_id']; ?>"

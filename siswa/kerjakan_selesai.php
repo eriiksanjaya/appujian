@@ -6,6 +6,8 @@
 
     // session_start();
 
+    unset($_SESSION['timeout']);
+    unset($_SESSION['detik']);
 
     // update selesai - history in ujian_kerjakan
     // ambil pilihan
