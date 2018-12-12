@@ -1,10 +1,9 @@
 <?php
-session_start();
- if (empty($_SESSION['admin_id'])){
-  echo "string";
-}
-else{
+// session_start();
 include "../../../config/koneksi.php";
+if (empty($_SESSION['admin_id'])){
+  echo "string";
+} else {
 
 $module=$_GET['q'];
 $act=$_GET['act'];

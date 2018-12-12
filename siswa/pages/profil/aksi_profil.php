@@ -1,5 +1,6 @@
 <?php
-session_start();
+// session_start();
+include "../../../config/koneksi.php";
 include"../../../config/url.php";
 ?>
 <link href='<?php echo $base_url_assets ?>/assets/css/bootstrap.min.css' rel='stylesheet'>
@@ -9,7 +10,6 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
 }
 else
 {
-  include "../../../config/koneksi.php";
 
   @$ksi = $_POST['subkelas'];
 

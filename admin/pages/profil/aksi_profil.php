@@ -1,18 +1,15 @@
 <?php
+// session_start();
+include "../../../config/koneksi.php";
 include '../../../config/url.php';
 ?>
 <link href='<?php echo $base_url ?>/assets/css/bootstrap.min.css' rel='stylesheet'>
 <?php
-session_start();
- if (empty($_SESSION['admin_id'])){
+if (empty($_SESSION['admin_id'])){
   header("location:../../index.php");
-}
-elseif($_SERVER['REQUEST_METHOD'] != 'POST'){
+} elseif ($_SERVER['REQUEST_METHOD'] != 'POST'){
     header('location:../../logout.php');
-    }
-    else{
-
-include "../../../config/koneksi.php";
+} else {
 
 $passo = md5($_POST['passo']);
 $passn = md5($_POST['passn']);

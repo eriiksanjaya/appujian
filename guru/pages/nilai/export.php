@@ -1,10 +1,10 @@
 <?php
-session_start();
+// session_start();
+include'../../../config/koneksi.php';
+include'../../../config/datetime.php';
 if (empty($_SESSION['guru_id'])){
   header("location:../../index.php");
 }else{
-include'../../../config/koneksi.php';
-include'../../../config/datetime.php';
 
 $he = mysqli_query($conn, "SELECT
 tb_siswa.nis,

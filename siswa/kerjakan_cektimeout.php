@@ -1,7 +1,7 @@
 <?php
 include '../config/koneksi.php';
 
-session_start();
+// session_start();
 
 if (cek_timeout($_SESSION['timeout']) == 0) {
 	$res['status'] = 0;

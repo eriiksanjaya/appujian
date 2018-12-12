@@ -4,7 +4,7 @@
     include '../config/datetime.php';
     include '../config/url.php';
 
-    session_start();
+    // session_start();
 
 
     // update selesai - history in ujian_kerjakan

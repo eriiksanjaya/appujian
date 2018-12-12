@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include '../../../config/koneksi.php';
 if(isset($_POST) && isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
 

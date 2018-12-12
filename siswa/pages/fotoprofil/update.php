@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include "../../../config/koneksi.php";
 include "../../../config/datetime.php";
 include "../../../config/fungsi_thumb.php";

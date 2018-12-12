@@ -1,13 +1,11 @@
 <?php
-session_start();
- if (empty($_SESSION['admin_id'])){
+// session_start();
+include "../../../config/koneksi.php";
+include "../../../config/datetime.php";
+include "../../../vendor/autoload.php";
+if (empty($_SESSION['admin_id'])){
   echo "string";
-}
-else{
-
-    include "../../../config/koneksi.php";
-    include "../../../config/datetime.php";
-    include "../../../vendor/autoload.php";
+} else {
 
     $module=$_GET['q'];
     $act=$_GET['act'];

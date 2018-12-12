@@ -1,12 +1,12 @@
 <?php
-session_start();
- if (empty($_SESSION['guru_id'])){
-  header("location:../../index.php");
-}else{
-error_reporting(0);
+// session_start();
 include "../../../config/koneksi.php";
 include "../../../config/datetime.php";
 include "../../../vendor/autoload.php";
+if (empty($_SESSION['guru_id'])){
+  header("location:../../index.php");
+} else {
+error_reporting(0);
 
 $module=$_GET['q'];
 $act=$_GET['act'];

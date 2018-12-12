@@ -3,7 +3,7 @@ include '../config/koneksi.php';
 include '../config/url.php';
 include '../config/datetime.php';
 
-session_start();
+// session_start();
 if(empty($_SESSION['guru_id']) OR $_SESSION['level'] != 'guru'){
   header("location:$base_url");
 }

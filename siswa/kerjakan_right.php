@@ -9,7 +9,7 @@
 				include '../config/koneksi.php';
 				include '../config/datetime.php';
 
-				session_start();
+				// session_start();
 
 				$get_data = mysqli_query($conn, "SELECT * FROM ujian_kerjakan WHERE kerjakan_userid = '$_SESSION[siswa_id]'
 					AND YEAR(kerjakan_createdate) = '$y' AND MONTH(kerjakan_createdate) = '$m' AND DAY(kerjakan_createdate) = '$d'

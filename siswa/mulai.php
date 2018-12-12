@@ -3,7 +3,7 @@
     include '../config/url.php';
     include '../config/datetime.php';
 
-    session_start();
+    // session_start();
     timeout($_SESSION['detik']);
     if(empty($_SESSION['siswa_id'])){
         header("location:$base_url");
