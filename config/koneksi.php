@@ -22,7 +22,7 @@ if( !function_exists('get_versi'))
 	function get_versi()
 	{
 		
-		$versi = "2.2";
+		$versi = "2.3";
 
 		return $versi;
 	}
