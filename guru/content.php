@@ -29,6 +29,9 @@ elseif ($_GET['q']=='nilai-siswa'){
 elseif ($_GET['q']=='learning'){
     include "../modules/learning/learning.php";
 }
+elseif ($_GET['q']=='berita'){
+    include "../modules/berita/berita.php";
+}
 else{
   echo "<h3><b>Alamat yang Anda ketikan tidak terdaftar</b></h3>";
 }

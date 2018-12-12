@@ -22,6 +22,23 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
+
+-- ----------------------------
+-- Table structure for berita
+-- ----------------------------
+DROP TABLE IF EXISTS `berita`;
+CREATE TABLE `berita`  (
+  `berita_id` int(11) NOT NULL AUTO_INCREMENT,
+  `berita_judul` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `berita_konten` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `berita_createby` int(11) NULL DEFAULT NULL,
+  `berita_isdelete` enum('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0',
+  `berita_createdate` datetime(0) NULL DEFAULT NULL,
+  `berita_lastupdate` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`berita_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+
+
 -- ----------------------------
 -- Table structure for learning
 -- ----------------------------
@@ -51,7 +68,7 @@ CREATE TABLE `ujian_menu`  (
   `menu_status` enum('0','1') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '1',
   `menu_sort` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of ujian_menu
@@ -66,6 +83,7 @@ INSERT INTO `ujian_menu` VALUES (7, 'fa fa-clone', 'Nilai', '?q=lihat-nilai', NU
 INSERT INTO `ujian_menu` VALUES (8, 'fa fa-laptop', 'Endtask', '?q=endtask', '1', '', '', '1', 4);
 INSERT INTO `ujian_menu` VALUES (9, 'fa fa-sign-out', 'Keluar', 'logout.php', '1', '1', '1', '1', 10);
 INSERT INTO `ujian_menu` VALUES (10, 'fa fa-laptop', 'Learning', '?q=learning', NULL, '1', '1', '1', 9);
+INSERT INTO `ujian_menu` VALUES (11, 'fa fa-laptop', 'Berita', '?q=berita', '1', '1', '1', '1', 10);
 
 DROP VIEW IF EXISTS `vw_learning`;
 CREATE VIEW `vw_learning` AS select `l`.`learning_id` AS `learning_id`,`l`.`learning_judul` AS `learning_judul`,`l`.`learning_konten` AS `learning_konten`,`l`.`learning_userid` AS `learning_userid`,`l`.`learning_kelasid` AS `learning_kelasid`,`l`.`learning_mapelid` AS `learning_mapelid`,`l`.`learning_isdelete` AS `learning_isdelete`,`l`.`learning_createdate` AS `learning_createdate`,`g`.`nama` AS `guru_nama`,`k`.`kelas` AS `kelas_nama`,`m`.`mata_pelajaran` AS `mapel_nama` from (((`learning` `l` left join `tb_guru` `g` on((`l`.`learning_userid` = `g`.`guru_id`))) left join `tb_kelas` `k` on((`l`.`learning_kelasid` = `k`.`kelas_id`))) left join `tb_mapel` `m` on((`l`.`learning_mapelid` = `m`.`mapel_id`)));
