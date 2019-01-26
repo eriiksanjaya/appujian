@@ -14,9 +14,11 @@
 			<div class="box box-primary">
 			    <div class="box-header">
 				    <div class="row">
-						<div class="col-md-6 caption">
-            <input type='button' class='btn btn-danger btn-flat btn-sm' value='Tambah' onclick="window.location.href='?q=learning&action=add'">
-						</div>
+				    	<?php if (app_session()['level'] != 'siswa') { ?>
+							<div class="col-md-6 caption">
+	            				<input type='button' class='btn btn-danger btn-flat btn-sm' value='Tambah' onclick="window.location.href='?q=learning&action=add'">
+							</div>
+				    	<?php } ?>
 				    </div>
 			    </div>
 			    <div class="box-body">

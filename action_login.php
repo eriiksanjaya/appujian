@@ -20,15 +20,7 @@
 
         if ($ketemu > 0) {
             session_start();
-
-            /**
-             * TIMEOUT
-             * Jika tidak ada aktivitas dalam mengerjakan soal, selama timeout yang telah ditentukan, maka tugas dianggap selesai.
-             * @var detik int
-             **/
-
-            $detik = 1000; // silakan ubah bagian sini
-            timeout($detik);
+            timeout($timeout);
 
             $_SESSION['siswa_id']     = @$r['user_id'];
             $_SESSION['id']           = @$r['id'];

@@ -1,10 +1,10 @@
 <?php
+include "config/koneksi.php";
+include "config/datetime.php";
 include "config/url.php";
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
     header("location:$base_url");
 } else {
-    include "config/koneksi.php";
-    include "config/datetime.php";
 
     $no = auto_nomor($conn);
 
@@ -28,8 +28,7 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
     if ($ketemu > 0) {
         session_start();
 
-        $detik = 1000; // silakan ubah bagian sini
-        timeout($detik);
+        timeout($timeout);
 
         $_SESSION['siswa_id']     = @$r['user_id'];
         $_SESSION['id']           = @$r['id'];

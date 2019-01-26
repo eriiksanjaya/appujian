@@ -2,6 +2,8 @@
 include '../config/koneksi.php';
 include '../config/url.php';
 
+trace($_SESSION);
+
 // session_start();
 if(isset($_SESSION['admin_id'])){
     header("location:$base_url/admin/pages.php?q=beranda");
