@@ -2,23 +2,21 @@
 	$folder = "";
 	$server = $_SERVER['HTTP_HOST'];
 
-	$local = true; // ganti true atau false
+	$local = true; /*true or false*/
 	/*
-	(ganti true atau false)
 	GANTI $local = false, jika sudah dionlinekan.
 	*/
 
-	$ssl = false;
+	$ssl = false; /*true or false*/
 	/* 
-	(ganti true atau false)
-	ganti true jika sudah menggunakan SSL*/
+	ganti true jika menggunakan SSL
+	*/
 
 	if ($ssl) {
 		$scheme = "https";
 	} else {
 		$scheme = "http";
 	}
-
 
     if ($local) {
         $base_url = "http://localhost/appujian";

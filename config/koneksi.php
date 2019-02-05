@@ -67,6 +67,7 @@ if ( !function_exists('trace') )
 		if($die) {
 			die();
 		}
+		echo "</pre>";
 	}
 }
 

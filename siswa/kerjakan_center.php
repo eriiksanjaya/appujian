@@ -66,9 +66,10 @@
 
                	foreach ($get_soal as $key => $value) {
                     $_value = preg_replace('/\s+/', ' ', $value);
-               		$field_value['soal'][$key] = str_replace(array("'","<p>","</p>","\n","\r",'"',"alt= "), "", $_value);
+               		$field_value['soal'][$key] = str_replace(
+                        ["'","<p>","</p>","\n","\r",'"',"alt= ", "{", "}", "{\u}", "alt=", "\\", ""],
+                        ["", "", "", "", "", "", "", "&#123;", "&#125;", "&#123;&#92;u&#125;", "", "&#92;", ""], $_value);
                	}
-
 
                 $array = json_encode($field_value, JSON_UNESCAPED_UNICODE);
 

@@ -3,7 +3,6 @@
     include '../config/url.php';
     include '../config/datetime.php';
 
-    // session_start();
     if(empty($_SESSION['siswa_id']) OR $_SESSION['level'] != 'siswa'){
     header("location:$base_url");
     }
