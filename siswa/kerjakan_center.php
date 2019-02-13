@@ -1,7 +1,8 @@
 <?php
 	$soal_aktif = mysqli_query($conn, "SELECT * FROM tb_soal_aktif WHERE materi_soal_id = '$_GET[msi]' AND soal_aktif_id = '$_GET[sai]'");
     $c = mysqli_fetch_assoc($soal_aktif);
-    if(mysqli_num_rows($soal_aktif) > 0) {
+
+    if($soal_aktif->num_rows > 0) {
 
     	$doing = mysqli_query($conn, "SELECT * FROM ujian_kerjakan WHERE kerjakan_userid = '$_SESSION[siswa_id]' 
                 AND kerjakan_status = 'mulai'
@@ -24,12 +25,14 @@
             $get_kerjakan = mysqli_query($conn, $_sql);
             $cek_kerjakan = mysqli_num_rows($get_kerjakan);
 
+
+
             $_getkerjakan = mysqli_fetch_assoc($get_kerjakan);
 
                 $mulai = $c['tgl'] .' '.$c['jam'];
                 $selesai = date('Y-m-d H:i:s', strtotime("+ $c[menit] minutes", strtotime($mulai)));
 
-            if ($cek_kerjakan <=0) {
+            if ($cek_kerjakan == 0) {
 
                 $jam_selesai = strtotime($selesai);
                 $now = strtotime(date('Y-m-d H:i:s'));

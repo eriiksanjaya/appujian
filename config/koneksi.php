@@ -299,12 +299,17 @@ if( !function_exists('auto_nomor'))
 
 if( !function_exists('timeout'))
 {
-	function timeout($detik = 1000)
+	function timeout($detik = null)
 	{
+
+		session_start();
+
+		$detik = ($detik) ? $detik : 1000;
+
         $_SESSION['timeout'] = time()+$detik;
         $_SESSION['detik']   = $detik;
 
-		return time()+$detik;
+		return $_SESSION;
 	}
 }
 

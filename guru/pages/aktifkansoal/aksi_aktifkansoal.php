@@ -1,6 +1,5 @@
 <?php
-error_reporting(0);
-// session_start();
+// error_reporting(0);
 include "../../../config/koneksi.php";
 include "../../../config/datetime.php";
 
@@ -25,7 +24,7 @@ $end   = date("H:i:s", $jaman);
 
 if ($module=='aktifkan-soal' AND $act=='input'){
 
-  $cek = mysqli_query($conn, "SELECT
+  $sql = "SELECT
 tb_soal_aktif.soal_aktif_id,
 tb_soal_aktif.materi_soal_id,
 tb_soal_aktif.kelas_sub_id,
@@ -39,10 +38,30 @@ FROM
 tb_soal_aktif
 INNER JOIN tb_materi_soal ON tb_soal_aktif.materi_soal_id = tb_materi_soal.materi_soal_id
 WHERE tb_materi_soal.guru_id = '$_SESSION[guru_id]' 
-AND  tb_soal_aktif.materi_soal_id='$_POST[materi_soal_id]' AND tb_soal_aktif.kelas_sub_id='$_POST[kelas_sub_id]'");
-  if(mysqli_num_rows($cek)==1){
+AND  tb_soal_aktif.materi_soal_id='$_POST[materi_soal_id]' AND tb_soal_aktif.kelas_sub_id='$_POST[kelas_sub_id]'";
+
+  $cek = mysqli_query($conn, $sql);
+
+
+  if($cek->num_rows > 0){
+
+    $data = mysqli_fetch_assoc($cek);
+
+    $sad      = $data['soal_aktif_id'];
+    $ksi      = $data['kelas_sub_id'];
+
+    mysqli_query($conn, "UPDATE tb_soal_aktif SET kelas_sub_id = '$ksi',
+                                           menit        = '$menit',
+                                           detik        = '$detik',
+                                           tgl          = '$tgl',
+                                           jam          = '$jam',
+                                           selesai      = '$end'
+                                       WHERE soal_aktif_id = $sad");
+
     header('location:../../pages.php?q='.$module);
+
   }else{
+    
   mysqli_query($conn, "INSERT INTO tb_soal_aktif(materi_soal_id,kelas_sub_id,menit,detik,tgl,jam,selesai) 
 	                       VALUES('$msi','$ksi','$menit','$detik','$tgl','$jam','$end')");
   header('location:../../pages.php?q='.$module);

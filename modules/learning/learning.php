@@ -95,8 +95,6 @@
 
     	var notif = $('#notif');
 		var btnDelete 	= $('.delete');
-		var id 			= btnDelete.attr('data-id');
-		var action 		= btnDelete.attr('data-action');
 
 		notif.click(function(event) {
 			$(this).slideUp('slow');
@@ -106,8 +104,12 @@
 			notif.removeClass();
 	    }
 
-		btnDelete.click(function(event) {
+		$('.btn').click(function(event) {
+			var id 			= $(this).attr('data-id');
+			var action 		= $(this).attr('data-action');
+
 			removeClass();
+			
 			$.ajax({
 				url: "<?php echo $base_url; ?>/modules/learning/learning_action.php",
 				type: 'POST',
