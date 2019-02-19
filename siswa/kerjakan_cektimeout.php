@@ -8,6 +8,7 @@ if (cek_timeout($_SESSION['timeout']) == 0) {
 	$res['status'] = 1;
 }
 
+
 echo json_encode($res);
 
 ?>

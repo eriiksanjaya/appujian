@@ -166,7 +166,6 @@ if(@$_SESSION['level'] == "siswa"){
       $(this).slideUp('slow');
     });
 
-
     var ok = $('#ok');
     var userid = $('#userid');
     var pass = $('#pass');
