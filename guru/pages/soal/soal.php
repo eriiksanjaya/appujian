@@ -278,11 +278,11 @@ echo"
           <th>Blokir</th>
           <th>Aksi</th>
           </tr>
-      </thead>"; 
+      </thead><tbody>"; 
     $no=1;
     while ($r=mysqli_fetch_assoc($tampil)){
    
-       echo "<tbody><tr>
+       echo "<tr>
           <td>$no</td>
              <td>$r[soal]</td>
              <td>$r[jawaban]</td>
@@ -301,10 +301,10 @@ echo"
              <a href=\"$aksi?q=buat-soal&act=hapus&id=$r[soal_id]&msi=$m[materi_soal_id]\" onClick=\"return confirm('Yakin ingin menghapus soal ?')\"><button type=button class='btn btn-danger btn-xs'>Hapus</button></a>
              
 
-       </td></tr></tbody>";
+       </td></tr>";
       $no++;
     }
-    echo "</table></div>";
+    echo "</tbody></table></div>";
 }
     break;
 

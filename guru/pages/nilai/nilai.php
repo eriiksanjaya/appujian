@@ -99,10 +99,10 @@ ORDER BY tb_nilai_guru.nilai_id DESC");
           <th>Tgl</th>
           <th>Jam</th>
           <th>Aksi</th>
-          </tr></thead>";
+          </tr></thead><tbody>";
     $no = 1;
     while ($r=mysqli_fetch_assoc($tampil)){
-       echo "<tbody>
+       echo "
           <tr>
           <td>$no</td>
              <td>$r[nama_kelas]</td>
@@ -112,10 +112,10 @@ ORDER BY tb_nilai_guru.nilai_id DESC");
              <td>$r[jam]</td>
              <td><div class='btn-group'><a href=?q=nilai-siswa&act=tampilnilai&msi=$r[materi_soal_id]&ksi=$r[kelas_sub_id]&tgl=$r[tgl]><button type='button' class='btn btn-primary btn-xs'>Lihat</button></a>
        </div></td></tr>
-       </tbody>";
+      ";
       $no++;
     }
-    echo "</table></div>
+    echo " </tbody></table></div>
           </div>
         </div>
       </div>";
@@ -212,10 +212,10 @@ $tgl = app_date_value($h['tgl'], "d M Y");
           <th>Salah</th>
           <th>Nilai</th>
           <th>Jam</th>
-          </tr></thead>";
+          </tr></thead><tbody>";
     $no = 1;
     while ($r=mysqli_fetch_assoc($tampil)){
-       echo "<tbody>
+       echo "
           <tr>
           <td>$no</td>
              <td>$r[nis]</td>
@@ -225,10 +225,10 @@ $tgl = app_date_value($h['tgl'], "d M Y");
              <td>$r[nilai]</td>
              <td>$r[jam]</td>
              </td></tr>
-       </tbody>";
+       ";
       $no++;
     }
-    echo "</table></div></div></div>";
+    echo "</tbody></table></div></div></div>";
 }
     break;
 

@@ -112,12 +112,12 @@ if(@$_SESSION['level'] == "siswa"){
 
                   <div class="md-form">
                     <i class="far fa-user-circle prefix grey-text"></i>
-                    <input type="text" id="userid" class="form-control">
+                    <input type="text" id="userid" class="form-control" autocomplete="off">
                     <label for="userid">User ID</label>
                   </div>
                   <div class="md-form">
                     <i class="far fa-dot-circle prefix grey-text"></i>
-                    <input type="password" id="pass" class="form-control">
+                    <input type="password" id="pass" class="form-control" autocomplete="off">
                     <label for="pass">Password</label>
                   </div>
                   <div class="text-center">

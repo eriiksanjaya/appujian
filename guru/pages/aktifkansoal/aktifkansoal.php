@@ -142,11 +142,11 @@ ORDER BY tb_mapel.mata_pelajaran,tb_kelas_sub.nama_kelas,tb_materi_soal.materi A
           <th>Jam</th>
           <th>Status</th>
           <th>Aksi</th>
-          </tr></thead>"; 
+          </tr></thead><tbody>"; 
     $no=1;
     while ($r=mysqli_fetch_assoc($tampil)){
       $tgl = app_date_value($r['tgl'], "d M Y");
-       echo "<tbody><tr>
+       echo "<tr>
 	   		<td>$no</td>
             <td>$r[mata_pelajaran]</td>
             <td>$r[nama_kelas]</td>
@@ -166,10 +166,10 @@ ORDER BY tb_mapel.mata_pelajaran,tb_kelas_sub.nama_kelas,tb_materi_soal.materi A
               <a href="<?php echo $aksi . '?q=aktifkan-soal&act=aktif&sad='.$r['soal_aktif_id']. '&m='.$r['menit'] ?>"><button type=button class='btn btn-warning btn-xs'>Batal Blokir</button></a>
             <?php }
 echo"
-             </td></tr></tbody>";
+             </td></tr>";
       $no++;
     }
-    echo "</table></div></div>";
+    echo "</tbody></table></div></div>";
 
 }
     break;
