@@ -200,7 +200,7 @@
         .done(function(res) {
             console.log(res.status);
             if(res.status == 0) {
-                selesaikan_tugas();
+                //selesaikan_tugas();
             }
         });
     }
