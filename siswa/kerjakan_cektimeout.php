@@ -1,7 +1,7 @@
 <?php
 include '../config/koneksi.php';
 
-if (cek_timeout($_SESSION['timeout']) == 0) {
+/*if (cek_timeout($_SESSION['timeout']) == 0) {
 	$res['status'] = 0;
 } else {
 	timeout($_SESSION['detik']);
@@ -9,6 +9,6 @@ if (cek_timeout($_SESSION['timeout']) == 0) {
 }
 
 
-echo json_encode($res);
+echo json_encode($res);*/
 
 ?>
