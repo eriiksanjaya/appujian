@@ -43,7 +43,8 @@
 								$join = "LEFT JOIN tb_guru g on b.berita_createby = g.guru_id";
 								$getdata = app_getdata($conn, 'berita b', '*', $where, $join);
 
-								foreach ($getdata['data'] as $key => $row) {
+
+								foreach (@$getdata['data'] as $key => $row) {
 							?>
 									<tr>
 										<td align="center"><?php echo $no++; ?></td>

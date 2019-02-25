@@ -54,7 +54,7 @@
 
 								$getdata = app_getdata($conn, 'vw_learning', '*', $where);
 
-								foreach ($getdata['data'] as $key => $row) {
+								foreach (@$getdata['data'] as $key => $row) {
 							?>
 									<tr class="<?php echo $row['kerjakan_id']; ?>">
 										<td align="center"><?php echo $no++; ?></td>

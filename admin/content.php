@@ -55,6 +55,9 @@ elseif ($_GET['q']=='identitas'){
 elseif ($_GET['q']=='endtask'){
     include "../modules/endtask/endtask.php";
 }
+elseif ($_GET['q']=='berita'){
+    include "../modules/berita/berita.php";
+}
 else{
   echo "<h3><b>Alamat yang Anda ketikan tidak terdaftar</b></h3>";
 }

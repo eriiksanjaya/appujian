@@ -418,6 +418,7 @@ if (!function_exists('app_getdata')) {
 		
 		$_data['status'] = false;
 		$_data['message'] = "Data tidak ditemukan";
+		$_data['data'] = [];
 
 		$group = ($group != null) ? "GROUP BY " . $group : null;
 		$select = ($select != null) ? $select : "*";
