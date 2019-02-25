@@ -215,7 +215,7 @@
             'msi' : msi
         }
 
-        // cek_timeout();
+        //  cek_timeout();
 
         $.ajax({
             url: 'kerjakan_getsoal.php',
